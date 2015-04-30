@@ -1,0 +1,340 @@
+PT Grid 0 Condition: conc = 1.63087e+020, temp = 900, diagonalization precision: double
+{
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	200	2.53746e+009	100.131	36.7669	4590.86
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	200	1.70604e+009	100.519	36.7018	4826.29
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	300	1.92981e+011	117.757	51.5422	8987.79
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	300	1.56972e+011	118.052	51.2266	9199.46
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	400	1.19077e+013	134.742	67.1897	14929.4
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	400	1.05212e+013	134.947	66.8915	15109.6
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	500	6.73041e+014	151.213	79.5067	22334.5
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	500	6.20072e+014	151.344	79.0159	22481.6
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	600	3.36887e+016	165.324	69.5243	30059.2
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	600	3.16093e+016	165.275	68.0168	30105.6
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	700	1.18578e+018	173.978	42.3626	35637.6
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	700	1.10886e+018	173.691	40.9982	35529.9
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	800	2.43352e+019	178.343	24.6032	38886.6
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	800	2.24249e+019	177.913	23.812	38672.5
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	900	2.94947e+020	180.68	15.9646	40862.5
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	900	2.67163e+020	180.179	15.5123	40588.1
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	1000	2.31446e+021	182.117	11.7019	42222.3
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	1000	2.06237e+021	181.578	11.4208	41912.2
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	298.15	1.78573e+011	117.439	51.2518	8892.71
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	298.15	1.44933e+011	117.736	50.9371	9104.96
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	300	1.92981e+011	117.757	51.5422	8987.79
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	300	1.56972e+011	118.052	51.2266	9199.46
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	400	1.19077e+013	134.742	67.1897	14929.4
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	400	1.05212e+013	134.947	66.8915	15109.6
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	500	6.73041e+014	151.213	79.5067	22334.5
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	500	6.20072e+014	151.344	79.0159	22481.6
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	600	3.36887e+016	165.324	69.5243	30059.2
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	600	3.16093e+016	165.275	68.0168	30105.6
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	800	2.43352e+019	178.343	24.6032	38886.6
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	800	2.24249e+019	177.913	23.812	38672.5
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	1000	2.31446e+021	182.117	11.7019	42222.3
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	1000	2.06237e+021	181.578	11.4208	41912.2
+
+sumc calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	1500	1.38725e+024	185.455	6.35564	46254.9
+sumg calculation started:	TS_1_1b
+temperature	Q, S, Cp and HmH0:	1500	1.16613e+024	184.858	6.28832	45876.9
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	200	4.11627e+009	102.929	39.0735	4958.25
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	200	2.7661e+009	103.315	39.0621	5193.42
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	300	4.57541e+011	121.283	52.7707	9530.99
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	300	3.72122e+011	121.58	52.4494	9743.1
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	400	3.61049e+013	138.51	67.6778	15554.8
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	400	3.19008e+013	138.715	67.3793	15735.2
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	500	2.3972e+015	155.026	79.2634	22979
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	500	2.2092e+015	155.171	79.0288	23132.6
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	600	1.32859e+017	168.941	67.631	30593.5
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	600	1.25424e+017	169.049	67.4535	30726.8
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	700	4.92923e+018	177.292	40.6332	35975.5
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	700	4.72379e+018	177.375	40.4854	36092.6
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	800	1.03629e+020	181.48	23.6559	39092.6
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	800	1.003e+020	181.544	23.5331	39196.2
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	900	1.27092e+021	183.734	15.4668	40998.9
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	900	1.23855e+021	183.786	15.3661	41091.4
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	1000	1.00381e+022	185.131	11.4214	42321.2
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	1000	9.83066e+021	185.173	11.3385	42404.4
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	298.15	4.21e+011	120.958	52.4981	9433.61
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	298.15	3.41647e+011	121.256	52.1777	9646.32
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	300	4.57541e+011	121.283	52.7707	9530.99
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	300	3.72122e+011	121.58	52.4494	9743.1
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	400	3.61049e+013	138.51	67.6778	15554.8
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	400	3.19008e+013	138.715	67.3793	15735.2
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	500	2.3972e+015	155.026	79.2634	22979
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	500	2.2092e+015	155.171	79.0288	23132.6
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	600	1.32859e+017	168.941	67.631	30593.5
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	600	1.25424e+017	169.049	67.4535	30726.8
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	800	1.03629e+020	181.48	23.6559	39092.6
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	800	1.003e+020	181.544	23.5331	39196.2
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	1000	1.00381e+022	185.131	11.4214	42321.2
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	1000	9.83066e+021	185.173	11.3385	42404.4
+
+sumc calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	1500	6.08307e+024	188.42	6.31316	46297
+sumg calculation started:	RO2_1
+temperature	Q, S, Cp and HmH0:	1500	6.02707e+024	188.439	6.27585	46352.4
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	200	5.97542e+009	104.905	41.668	5205.31
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	200	4.01195e+009	105.295	41.6338	5441.63
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	300	9.04007e+011	124.415	55.7953	10064.7
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	300	7.35085e+011	124.713	55.4701	10277.3
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	400	9.44921e+013	142.506	70.5863	16388.6
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	400	8.34846e+013	142.711	70.2749	16569
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	500	7.98575e+015	159.581	80.7885	24060.6
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	500	7.34676e+015	159.656	79.3979	24181.2
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	600	5.31079e+017	173.378	64.7884	31603.8
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	600	4.89137e+017	172.928	60.7543	31431.7
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	700	2.18251e+019	181.214	37.4872	36651.2
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	700	1.92583e+019	180.188	34.4678	36107.4
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	800	4.8194e+020	185.07	21.8342	39521.8
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	800	4.00647e+020	183.741	20.2211	38752.2
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	900	6.05985e+021	187.164	14.4735	41291.9
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	900	4.75262e+021	185.692	13.5926	40402.1
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	1000	4.8544e+022	188.48	10.8465	42538
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	1000	3.61516e+022	186.936	10.3198	41579.9
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	298.15	8.27227e+011	124.071	55.5206	9961.69
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	298.15	6.71162e+011	124.371	55.1962	10174.9
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	300	9.04007e+011	124.415	55.7953	10064.7
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	300	7.35085e+011	124.713	55.4701	10277.3
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	400	9.44921e+013	142.506	70.5863	16388.6
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	400	8.34846e+013	142.711	70.2749	16569
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	500	7.98575e+015	159.581	80.7885	24060.6
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	500	7.34676e+015	159.656	79.3979	24181.2
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	600	5.31079e+017	173.378	64.7884	31603.8
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	600	4.89137e+017	172.928	60.7543	31431.7
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	800	4.8194e+020	185.07	21.8342	39521.8
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	800	4.00647e+020	183.741	20.2211	38752.2
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	1000	4.8544e+022	188.48	10.8465	42538
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	1000	3.61516e+022	186.936	10.3198	41579.9
+
+sumc calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	1500	3.01518e+025	191.665	6.22017	46394.1
+sumg calculation started:	QOOH_1b
+temperature	Q, S, Cp and HmH0:	1500	1.89056e+025	190.02	6.1124	45316.5
+temperature	Q, S, Cp and HmH0:	900	1.23855e+021	183.786	15.3661	41091.4
+temperature	Q, S, Cp and HmH0:	900	4.75262e+021	185.692	13.5926	40402.1
+
+Canonical first order forward rate constant of isomerization reaction R1 = 14019 s-1 (900 K)
+Canonical first order backward rate constant of isomerization reaction R1 = 4.61323e+007 s-1 (900 K)
+
+Canonical rate coefficients for R1, calculated from microcanonical rates
+{
+    100   4.74037e-029
+    200   1.43904e-010
+    300    0.000616163
+    400        2.38942
+    500        252.608
+    600        2492.25
+    700        6850.41
+    800        10946.5
+    900          14019
+   1000        16243.7
+}
+temperature	Q, S, Cp and HmH0:	900	1.23855e+021	183.786	15.3661	41091.4
+temperature	Q, S, Cp and HmH0:	900	4.75262e+021	185.692	13.5926	40402.1
+
+Eq fraction matrix:
+{
+  -0.00029657            1
+            1            1
+}
+inverse of Eq fraction matrix:
+{
+      -0.9997       0.9997
+       0.9997   0.00029648
+}
+Equilibrium Fraction for QOOH_1b = 0.000296478
+Equilibrium Fraction for RO2_1 = 0.999704
+
+Bartis Widom eigenvalue/eigenvector analysis
+
+Number of sinks in this system: 0
+
+There should be 1 zero eigenvalue (zero within numerical precision) and 1 chemically significant eigenvalues (CSEs)
+
+WARNING: Chemically significant eigenvalues (CSE) not well separated from internal energy relaxation eigenvals (IEREs).
+
+The last CSE = -2.68858e+008 and the first IERE = -6.08228e+008
+(last CSE)/(first IERE) ratio = 0.442035, which is less than an order of magnitude
+
+Results obtained from Bartis Widom eigenvalue-vector analysis may be unreliable
+
+Z_matrix: {
+1.941691e-03	9.999962e-01	
+-1.941691e-03	3.770179e-06	
+}
+
+Z_matrix^(-1):
+{
+1.941699e-03	-5.150130e+02	
+1.000000e+00	1.000000e+00	
+}
+
+Z_matrix * Z_matrix^(-1) [Identity matrix]:
+{
+1.000000e+00	9.495568e-65	
+1.159127e-69	1.000000e+00	
+}
+
+Kr matrix:
+{
+-1.013644e+03	2.688573e+08	
+1.013644e+03	-2.688573e+08	
+}
+
+First order & pseudo first order rate coefficients for loss rxns:
+{
+QOOH_1b loss = -2.688573e+08
+RO2_1 loss = -1.013644e+03
+}
+
+First order & pseudo first order rate coefficients for isomerization rxns:
+{
+QOOH_1b -> RO2_1 = 2.688573e+08
+RO2_1 -> QOOH_1b = 1.013644e+03
+}
+}

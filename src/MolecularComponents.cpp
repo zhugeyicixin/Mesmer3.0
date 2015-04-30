@@ -639,8 +639,7 @@ namespace mesmer
           formatFloat(ctest, grainCanPrtnFn,  6, 15) ;
           ctest << endl ;
         }
-		//printf("molecular,testDensityOfStates\n");
-		//printf("%f\n%f\t%f\t%f\n",temp,qtot,cellCanPrtnFn,grainCanPrtnFn);
+
         //Add to XML document
         PersistPtr ppItem = ppList->XmlWriteElement("me:densityOfStates");
         ppItem->XmlWriteValueElement("me:T",    temp, 6);
@@ -649,19 +648,29 @@ namespace mesmer
         ppItem->XmlWriteValueElement("me:sumg", grainCanPrtnFn, 6);
       }
 
+	  // this inserted short code is used to calculate the thermodynamic data with rovibronic partition functions based on cells and grains
+	  // including Cp, S and H(T) - H(0) at 1 atm
+	  // units: cal, mol, K, i.e. Cp and S for cal/mol/K, H for cal/mol 
+	  // the output can be found in the .test file
+	  // the definitions could be unified at the beginning of this function if a formal edition needed in the future
 	  int thermo_l = 8;
 	  double thermo_T[]={298.15, 300, 400, 500, 600, 800, 1000, 1500};
 	  double beta = 0.0;
+	  gStructure& gs = m_host->getStruc();
+	  double moleculeWeight = 0.0;
+	  
+	  moleculeWeight = gs.getMass();
+	  printf("molecule weight\t%f\n", moleculeWeight);
 	  for (int i = 0; i< thermo_l; i++)
 	  {
 		  beta = 1.0/(boltzmann_RCpK*thermo_T[i]);
 		  // Calculate rovibronic partition functions based on cells.
 		  ctest << endl << "sumc calculation started:\t" << m_host->getName() << endl;	
-		  double cellCanPrtnFn = canonicalPartitionFunction(m_cellDOS, cellEne, beta) ;
+		  thermodynamicCalc(m_cellDOS, cellEne, beta, moleculeWeight) ;
 
 		  // Calculate rovibronic partition functions based on grains.
 		  ctest << "sumg calculation started:\t" << m_host->getName() << endl;
-		  double grainCanPrtnFn = canonicalPartitionFunction(m_grainDOS, m_grainEne, beta) ;
+		  thermodynamicCalc(m_grainDOS, m_grainEne, beta, moleculeWeight) ;
 	  }
 
       if (m_host->getFlags().testDOSEnabled) ctest << "}" << endl;
