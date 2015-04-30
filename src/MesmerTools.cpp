@@ -17,10 +17,26 @@ namespace mesmer
   double canonicalPartitionFunction(const vector<double>& DOS, const vector<double>& Ene, const double beta){
 
     double CanPrtnFn(0.0) ;
+	double temp = 0.0;
+	double Q, Q1, Q2, S, Cp, HmH0;
+	Q = 0.0;
+	Q1 = 0.0;
+	Q2 = 0.0;
+	temp = 1.0/boltzmann_RCpK/beta;
+	
     for (size_t i(0), j(DOS.size()-1); i < DOS.size(); i++, j--) {
       if (DOS[j] > 0.0)
+	  {
         CanPrtnFn += exp( log(DOS[j]) - beta*Ene[j] ) ;
+		Q += DOS[j]*exp(-beta*Ene[j]);
+		Q1 += -Ene[j]/boltzmann_RCpK*DOS[j]*exp(-beta*Ene[j]);
+		Q2 += pow(Ene[j]/boltzmann_RCpK,2)*DOS[j]*exp(-beta*Ene[j]);
+	  }
     }
+	S = 8.314/4.184*log(Q)-8.314/4.184*Q1/Q/temp+1.5*8.314/4.184+8.314/4.184*(11.16970828-log(1.013e5)+2.5*log(8.314*temp));
+	Cp = 8.314/4.184/temp/temp*(Q2/Q-(Q1*Q1/Q/Q))+8.314/4.184*2.5;
+	HmH0 = -8.314/4.184*Q1/Q+8.314/4.184*temp*2.5;
+	ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << Q << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
     return CanPrtnFn;
 
   }
