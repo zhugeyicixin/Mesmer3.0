@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<defaults  xmlns="http://www.xml-cml.org/schema" xmlns:me="http://www.chem.leeds.ac.uk/mesmer">
+  <me:activationEnergy units="kJ/mol" default="NEEDS TO BE CHECKED**">0.0</me:activationEnergy>
+  <me:preExponential default="NEEDS TO BE CHECKED**">6.00e-12</me:preExponential>
+  <A default="NEEDS TO BE CHECKED**">6.00e-12</A>
+  <property dictRef="me:spinMultiplicity" default="true">
+    <scalar>1</scalar>
+  </property>
+  <property dictRef="me:symmetryNumber" default="true">
+    <scalar>1</scalar>
+  </property>
+   <property dictRef="me:frequenciesScaleFactor" default="true">
+    <scalar>1</scalar>
+  </property>
+   <property dictRef="me:ZPE" default="NEEDS TO BE CHECKED**">
+    <scalar units="kJ/mol">0</scalar>
+  </property>
+  <property dictRef="me:RMS_SOC_element" default="NEEDS TO BE CHECKED**">
+    <scalar units="cm-1">10.0</scalar>
+  </property>
+  <property dictRef="me:GradientDifferenceMagnitude" default="NEEDS TO BE CHECKED**">
+    <scalar units="a.u./Bohr">0.1</scalar>
+  </property>
+  <property dictRef="me:GradientReducedMass" default="NEEDS TO BE CHECKED**">
+    <scalar units="a.m.u.">16.0</scalar>
+  </property>
+  <property dictRef="me:Hf0" default="true">
+    <scalar units="kJ/mol">0</scalar>
+  </property>
+  <property dictRef="me:epsilon" default="true">
+    <scalar>50.0</scalar>
+  </property>
+  <property dictRef="me:sigma" default="true">
+    <scalar>5.0</scalar>
+  </property>
+  <me:deltaEDown default="NEEDS TO BE CHECKED**">130.0</me:deltaEDown>
+<!--<property dictRef="me:deltaEDown" default="NEEDS TO BE CHECKED**">
+    <scalar>130.0</scalar>
+  </property>-->
+  <property dictRef="me:deltaEDownTExponent" default="true">
+    <scalar referenceTemperature="298">0.0</scalar>
+  </property>
+  <molecule spinMultiplicity="1" default="true"/>
+  <molecule me:type="deficientReactant excessReactant modelled transitionState sink"
+            default="IS UNSATISFACTORY. CHOOSE ONE FROM LIST**"></molecule>
+  <molecule role="deficientReactant excessReactant modelled transitionState sink"
+            default="IS UNSATISFACTORY. CHOOSE ONE FROM LIST**"></molecule>
+  <property dictRef="me:MW" default="IS UNSATISFACTORY. A VALUE NEEDS TO BE PROVIDED**">
+    <scalar>0.0</scalar>
+  </property>
+  <me:MCRCMethod default="NEEDS TO BE CHECKED. COULD BE** " name="SimpleRRKM"/>
+  <me:DOSCMethod default="true" name="ClassicalRotors"/>
+  <me:DOSCType default="true">external</me:DOSCType>
+  <!--<me:DistributionCalcMethod default="true">Boltzmann</me:DistributionCalcMethod>-->
+  <me:DistributionCalcMethod default="true" name="Boltzmann"/>
+  <me:excessReactantConc default="NEEDS TO BE CHECKED**">2.25e+16</me:excessReactantConc>
+  <!--<me:precision default="true">double</me:precision>-->
+  <me:PTpair precision="d" P="1.01E17" T="299" default="true"/>
+  <me:bathgas default="true">He</me:bathgas>
+  <me:TInfinity default="true">298</me:TInfinity>
+  <me:eigenvalues default="true">0</me:eigenvalues>
+  <me:grainSize units="cm-1" default="true">100</me:grainSize>
+  <me:energyAboveTheTopHill units="kT" default="true">25</me:energyAboveTheTopHill>
+  <me:calcMethod default="true" name="simpleCalc"/>
+  <me:fittingTolerance default="true">0.01</me:fittingTolerance>
+  <me:fittingIterations default="true">10</me:fittingIterations>
+  <!--<me:energyTransferModel default="true">ExponentialDown</me:energyTransferModel>-->
+  <me:energyTransferModel name="ExponentialDown" default="true"/>
+  <me:MarquardtDerivDelta default="true">1.e-03</me:MarquardtDerivDelta>
+  <me:MarquardtTolerance default="true">1.e-03</me:MarquardtTolerance>
+  <me:ConstraintFactor default="true">1.0</me:ConstraintFactor>
+  <me:ConstraintAddand default="true">0.0</me:ConstraintAddand>
+  <me:SensitivityAnalysisIterations>10</me:SensitivityAnalysisIterations>
+  <me:SensitivityAnalysisDelta>2</me:SensitivityAnalysisDelta>
+  <me:chebMinConc units="particles per cubic centimeter"/>
+</defaults>
+

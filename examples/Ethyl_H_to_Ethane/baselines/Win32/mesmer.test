@@ -1,0 +1,120 @@
+          Angle         Potential          Series
+       -2.96706,         1556.12,         1552.29
+       -2.79253,         1426.92,         1415.02
+       -2.61799,         1217.34,         1203.23
+       -2.44346,         952.652,          945.08
+       -2.26893,         682.786,         679.373
+        -2.0944,         458.988,         447.109
+       -1.91986,         294.535,         279.563
+       -1.74533,          199.81,         189.021
+        -1.5708,         170.751,         166.958
+       -1.39626,         189.429,         189.777
+       -1.22173,         238.679,         228.146
+        -1.0472,         263.765,         255.516
+      -0.872665,         259.134,         253.861
+      -0.698132,         217.126,         217.046
+      -0.523599,         149.814,         152.216
+      -0.349066,         84.4978,         78.2051
+      -0.174533,         30.3534,         19.6076
+              0,               0,        -2.66382
+       0.174533,         8.42783,         19.6076
+       0.349066,         71.7902,         78.2051
+       0.523599,         150.604,         152.216
+       0.698132,         213.132,         217.046
+       0.872665,         254.657,         253.861
+         1.0472,         252.352,         255.516
+        1.22173,         215.919,         228.146
+        1.39626,         183.174,         189.777
+         1.5708,         160.699,         166.958
+        1.74533,         180.781,         189.021
+        1.91986,         276.253,         279.563
+         2.0944,         432.387,         447.109
+        2.26893,         665.887,         679.373
+        2.44346,         932.614,          945.08
+        2.61799,         1198.38,         1203.23
+        2.79253,         1411.64,         1415.02
+        2.96706,         1546.05,         1552.29
+        3.14159,         1593.54,          1599.6
+
+PT Grid 0 Condition: conc = 8.05242e+017, temp = 301, diagonalization precision: double-double
+{
+
+Test rovibronic density of states for: Ethane
+{
+      T           qtot           sumc           sumg
+    200        1075.97        1074.69        990.288
+    300         2989.3        2987.93        2879.44
+    400        6764.95        6763.69        6622.84
+}
+
+Eq fraction matrix:
+{
+ -1.2802e+068            1
+            1            1
+}
+inverse of Eq fraction matrix:
+{
+ -7.8114e-069  7.8114e-069
+  7.8114e-069            1
+}
+Equilibrium Fraction for Ethane = 1
+Equilibrium Fraction for Ethyl = 7.81139e-069
+
+Total number of eigenvalues = 195
+Eigenvalues
+{
+ -2.256242e+007
+ -2.099554e+007
+ -1.792575e+007
+ -7.112324e+006
+ -3.841275e-008
+}
+
+Bartis Widom eigenvalue/eigenvector analysis
+
+Number of sinks in this system: 0
+
+There should be 1 zero eigenvalue (zero within numerical precision) and 1 chemically significant eigenvalues (CSEs)
+
+WARNING: Chemically significant eigenvalues (CSE) not well separated from internal energy relaxation eigenvals (IEREs).
+
+The last CSE = -7.11232e+006 and the first IERE = -1.79258e+007
+(last CSE)/(first IERE) ratio = 0.396766, which is less than an order of magnitude
+
+Results obtained from Bartis Widom eigenvalue-vector analysis may be unreliable
+
+Z_matrix: {
+2.996844e-34	8.981073e-68	
+-2.996844e-34	1.000000e+00	
+}
+
+Z_matrix^(-1):
+{
+3.336844e+33	-2.996844e-34	
+1.000000e+00	1.000000e+00	
+}
+
+Z_matrix * Z_matrix^(-1) [Identity matrix]:
+{
+1.000000e+00	3.522102e-133	
+1.664258e-65	1.000000e+00	
+}
+
+Kr matrix:
+{
+-7.112324e+06	6.387630e-61	
+7.112324e+06	-6.387630e-61	
+}
+
+First order & pseudo first order rate coefficients for loss rxns:
+{
+Ethane loss = -6.387630e-61
+Ethyl loss = -7.112324e+06
+}
+
+First order & pseudo first order rate coefficients for isomerization rxns:
+{
+Ethane -> Ethyl = 6.387630e-61
+Ethyl -> Ethane = 7.112324e+06
+}
+}

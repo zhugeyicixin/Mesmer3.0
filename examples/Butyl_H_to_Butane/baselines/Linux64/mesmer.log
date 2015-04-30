@@ -1,0 +1,65 @@
+
+            /|      /|                        \   
+           / |     / | ________________________\  
+          /  |    /  |  _   _             _   _   
+         /   |   /   | / \ / \ |\     /| / \ / \  
+        /    |  /    | \_/ \_  | \   / | \_/ |_/  
+       /     | /     | /     \ |  \ /  | /   | \  
+    \_/      |/      | \_/ \_/ |   V   | \_/ |  \ 
+
+     Mesmer: Master Equation Solver for Multi-Energy well Reactions
+     Mesmer v3.0 compiled: -- Dec 12 2013 -- 13:15:13
+
+     Copyright (C) 2009-2013 by
+     Struan H. Robertson, David R. Glowacki, Chi-Hsiu Liang,
+     Chris Morley, Michael J. Pilling and contributors
+
+     Mesmer is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Public License as published by
+     the Free Software Foundation, either version 2 of the License,
+     or (at your option) any later version.
+
+     But WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU Public License for more details.
+
+    You should have received a copy of the GNU Public License
+    along with Mesmer.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Parsing input xml file...
+Butyl_H_to_Butane.xml
+
+Write metadata 20131212_133838
+
+File: "Butyl_H_to_Butane.xml" successfully parsed.
+Main Calculation begins
+The default units of kJ/mol will be used for thermodynamics tables.
+In Butane: The default value of me:frequenciesScaleFactor was used.
+In Butane: Rotational constants were calculated from atom coordinates: 0.113192 0.120421 0.790797 cm-1
+In Butyl: Hindered rotor b6
+Hindered rotor b2
+Hindered rotor b8
+The default value of me:frequenciesScaleFactor was used.
+In Butyl: Rotational constants were calculated from atom coordinates: 0.122254 0.129376 0.816406 cm-1
+In Butyl: The default value of me:DOSCMethod was used.
+In H: Hindered rotor b6
+The default value of me:frequenciesScaleFactor was used.
+In H: The default value of me:symmetryNumber was used.
+In H: The default value of spinMultiplicity (or one of its attributes) was used.
+In H: The default value of me:DOSCMethod was used.
+Number of grains produced is not equal to that requested
+Number of grains requested: 1000
+Number of grains produced : 1
+In He: The default value of me:frequenciesScaleFactor was used.
+In He: The default value of me:symmetryNumber was used.
+In He: The default value of spinMultiplicity (or one of its attributes) was used.
+In He: The default value of me:DOSCMethod was used.
+In He: No value of me:ZPE was supplied and the default value NEEDS TO BE CHECKED**
+m_ZPE was not defined but requested in He. Default value 0 is given.
+Number of grains produced is not equal to that requested
+Number of grains requested: 1000
+Number of grains produced : 1
+ -- Total time elapsed: 13 seconds.
+
+System saved to out.xml
