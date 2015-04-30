@@ -83,3 +83,5 @@ $RECYCLE.BIN/
 *.cache
 *.idb
 *.ilk
+*.ipch
+Windows VC10\Mesmer\Debug\*
