@@ -79,9 +79,9 @@ $RECYCLE.BIN/
 *.sdf
 *.pdb
 *.suo
-*.tlog
+*write*.tlog
+*read*.tlog
 *.cache
 *.idb
 *.ilk
 *.ipch
-Windows VC10\Mesmer\Debug\*
