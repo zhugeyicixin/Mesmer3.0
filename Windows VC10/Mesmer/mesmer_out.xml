@@ -107,7 +107,7 @@
             <me:tmpnode_DOSCMethod name="ClassicalRotors" />
             <me:DOSCMethod default="true" name="ClassicalRotors" />
             <me:DistributionCalcMethod default="true" name="Boltzmann" />
-            <me:densityOfStatesList calculated="20150430_133958">
+            <me:densityOfStatesList calculated="20150501_004052">
                 <me:description>Rovibronic partition function calculation at various temperatures. qtot : product of QM partition functions for vibrations (1-D harmonic oscillator) and classical partition functions for rotations.  sumc : cell based partition function. sumg : grain based partition function </me:description>
                 <me:densityOfStates>
                     <me:T>200</me:T>
@@ -271,7 +271,7 @@
             </me:energyTransferModel>
             <me:tmpnode_DOSCMethod name="ClassicalRotors" />
             <me:DOSCMethod default="true" name="ClassicalRotors" />
-            <me:densityOfStatesList calculated="20150430_133956">
+            <me:densityOfStatesList calculated="20150501_004050">
                 <me:description>Rovibronic partition function calculation at various temperatures. qtot : product of QM partition functions for vibrations (1-D harmonic oscillator) and classical partition functions for rotations.  sumc : cell based partition function. sumg : grain based partition function </me:description>
                 <me:densityOfStates>
                     <me:T>200</me:T>
@@ -433,7 +433,7 @@
             <me:tmpnode_DOSCMethod name="ClassicalRotors" />
             <me:DOSCMethod default="true" name="ClassicalRotors" />
             <me:DistributionCalcMethod default="true" name="Boltzmann" />
-            <me:densityOfStatesList calculated="20150430_133959">
+            <me:densityOfStatesList calculated="20150501_004053">
                 <me:description>Rovibronic partition function calculation at various temperatures. qtot : product of QM partition functions for vibrations (1-D harmonic oscillator) and classical partition functions for rotations.  sumc : cell based partition function. sumg : grain based partition function </me:description>
                 <me:densityOfStates>
                     <me:T>200</me:T>
@@ -521,7 +521,7 @@
             </me:transitionState>
             <me:MCRCMethod name="SimpleRRKM" />
             <me:tunneling name="Eckart" />
-            <me:microRateList calculated="20150430_133959">
+            <me:microRateList calculated="20150501_004053">
                 <me:description>Microcanonical rate coefficients</me:description>
                 <me:microRate>
                     <me:T>100</me:T>
@@ -597,10 +597,10 @@
     <metadataList xmlns:dc="http://purl.org/dc/elements/1.1/">
         <dc:source>TS_1_1b.xml</dc:source>
         <dc:creator>Mesmer v3.0</dc:creator>
-        <dc:date>20150430_133956</dc:date>
+        <dc:date>20150501_004050</dc:date>
         <dc:contributor>Administrator</dc:contributor>
     </metadataList>
-    <me:analysis calculated="20150430_133956">
+    <me:analysis calculated="20150501_004050">
         <me:description>All calculations shown</me:description>
         <me:rateList T="900" conc="1.63087e+020" bathGas="He" me:units="s-1">
             <me:warning> WARNING: Chemically significant eigenvalues (CSE) not well separated from internal energy relaxation eigenvals (IEREs).  The last CSE = -2.68858e+008 and the first IERE = -6.08228e+008 (last CSE)/(first IERE) ratio = 0.442035, which is less than an order of magnitude  Results obtained from Bartis Widom eigenvalue-vector analysis may be unreliable </me:warning>

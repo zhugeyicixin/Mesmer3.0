@@ -1,20 +1,11 @@
-﻿生成启动时间为 2015/4/30 13:39:02。
+﻿生成启动时间为 2015/4/30 22:41:35。
      1>项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\TinyXML\TinyXML.vcxproj”在节点 2 上(build 个目标)。
-     1>PrepareForBuild:
-         正在创建目录“Debug\”。
-         正在创建目录“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Debug\”。
-       InitializeBuildStatus:
+     1>InitializeBuildStatus:
          正在创建“Debug\TinyXML.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D TIXML_USE_STL /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\tinyxml\tinyxml.cpp ..\..\tinyxml\tinyxmlerror.cpp ..\..\tinyxml\tinyxmlparser.cpp /D_CRT_SECURE_NO_DEPRECATE 
-         tinyxmlparser.cpp
-         tinyxmlerror.cpp
-         tinyxml.cpp
-         正在生成代码...
+         所有输出均为最新。
        Lib:
-         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Debug\TinyXMLD.lib" /NOLOGO Debug\tinyxml.obj
-         Debug\tinyxmlerror.obj
-         Debug\tinyxmlparser.obj
+         所有输出均为最新。
          TinyXML.vcxproj -> D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Debug\TinyXMLD.lib
        FinalizeBuildStatus:
          正在删除文件“Debug\TinyXML.unsuccessfulbuild”。
@@ -23,4 +14,4 @@
 
 生成成功。
 
-已用时间 00:00:01.50
+已用时间 00:00:00.72

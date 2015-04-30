@@ -1,4 +1,4 @@
-﻿生成启动时间为 2015/4/30 13:39:02。
+﻿生成启动时间为 2015/4/30 22:41:35。
      1>项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qd.vcxproj”在节点 3 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\qd.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
@@ -6,24 +6,19 @@
          Description: Copy configuration files, if not up to date
          xcopy /Y /D qd_config.h  ..\..\qd\include\qd\
          :VCEnd
-         D:qd_config.h
-         复制了 1 个文件
+         复制了 0 个文件
        ClCompile:
-         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../qd/include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\qd\src\bits.cpp ..\..\qd\src\c_dd.cpp ..\..\qd\src\c_qd.cpp ..\..\qd\src\dd_const.cpp ..\..\qd\src\dd_real.cpp ..\..\qd\src\fpu.cpp ..\..\qd\src\qd_const.cpp ..\..\qd\src\qd_real.cpp ..\..\qd\src\util.cpp /D_CRT_SECURE_NO_DEPRECATE 
-         util.cpp
+         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../qd/include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\qd\src\bits.cpp ..\..\qd\src\c_dd.cpp ..\..\qd\src\c_qd.cpp ..\..\qd\src\dd_const.cpp ..\..\qd\src\dd_real.cpp ..\..\qd\src\fpu.cpp ..\..\qd\src\qd_const.cpp ..\..\qd\src\qd_real.cpp /D_CRT_SECURE_NO_DEPRECATE 
+         bits.cpp
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
          qd_real.cpp
-     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\qd_real.cpp(196): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
-     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\qd_real.cpp(196): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
          qd_const.cpp
          fpu.cpp
          dd_real.cpp
-     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\dd_real.cpp(860): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
-     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\dd_real.cpp(860): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
          dd_const.cpp
          c_qd.cpp
          c_dd.cpp
-         bits.cpp
-         正在生成代码...
        Lib:
          D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qdD.lib" /NOLOGO Debug\bits.obj
          Debug\c_dd.obj
@@ -42,4 +37,4 @@
 
 生成成功。
 
-已用时间 00:00:03.07
+已用时间 00:00:02.65
