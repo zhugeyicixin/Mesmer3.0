@@ -24,6 +24,11 @@ namespace mesmer
 	Q2 = 0.0;
 	temp = 1.0/boltzmann_RCpK/beta;
 	
+	// add the function to calculate the partition function and the derivatives and output the thermodynamic data to the .test file
+	// Q denotes the partition function, which is the same as CanPrtnFn in the original code
+	// Q1 denotes the first derivatives
+	// Q2 denotes the second derivatives
+	// units: cal, mol, K, i.e. Cp and S for cal/mol/K, H for cal/mol
     for (size_t i(0), j(DOS.size()-1); i < DOS.size(); i++, j--) {
       if (DOS[j] > 0.0)
 	  {
@@ -33,9 +38,11 @@ namespace mesmer
 		Q2 += pow(Ene[j]/boltzmann_RCpK,2)*DOS[j]*exp(-beta*Ene[j]);
 	  }
     }
-	S = 8.314/4.184*log(Q)-8.314/4.184*Q1/Q/temp+1.5*8.314/4.184+8.314/4.184*(11.16970828-log(1.013e5)+2.5*log(8.314*temp));
-	Cp = 8.314/4.184/temp/temp*(Q2/Q-(Q1*Q1/Q/Q))+8.314/4.184*2.5;
-	HmH0 = -8.314/4.184*Q1/Q+8.314/4.184*temp*2.5;
+	M_PI;
+	//S = idealGasC/Calorie_in_Joule*log(Q)-idealGasC/Calorie_in_Joule*Q1/Q/temp+1.5*idealGasC/Calorie_in_Joule+idealGasC/Calorie_in_Joule*(11.16970828-log(atm_in_pascal)+2.5*log(idealGasC*temp));
+	S = idealGasC/Calorie_in_Joule*(2.5+1.5*log(2*M_PI*0.159)-4*log(AvogadroC)-3*log(PlancksConstant_in_JouleSecond)-log(atm_in_pascal)+2.5*log(idealGasC*temp)+log(Q)-Q1/Q/temp);
+	Cp = idealGasC/Calorie_in_Joule/temp/temp*(Q2/Q-(Q1*Q1/Q/Q))+idealGasC/Calorie_in_Joule*2.5;
+	HmH0 = -idealGasC/Calorie_in_Joule*Q1/Q+idealGasC/Calorie_in_Joule*temp*2.5;
 	ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << Q << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
     return CanPrtnFn;
 
@@ -54,6 +61,35 @@ namespace mesmer
     return meanEnergy/CanPrtnFn ;
 
   }
+
+  // add the function to calculate the partition function and the derivatives and output the thermodynamic data to the .test file
+  // Q denotes the partition function, which is the same as CanPrtnFn in the original code
+  // Q1 denotes the first derivatives
+  // Q2 denotes the second derivatives
+  // units: cal, mol, K, i.e. Cp and S for cal/mol/K, H for cal/mol
+  void thermodynamicCalc(const vector<double>& DOS, const vector<double>& Ene, const double beta, double MW)
+  {
+	  double temp = 0.0;
+	  double Q, Q1, Q2, S, Cp, HmH0;
+	  Q = 0.0;
+	  Q1 = 0.0;
+	  Q2 = 0.0;
+	  temp = 1.0/boltzmann_RCpK/beta;
+
+	  for (size_t i(0), j(DOS.size()-1); i < DOS.size(); i++, j--) {
+		  if (DOS[j] > 0.0)
+		  {
+			  Q += DOS[j]*exp(-beta*Ene[j]);
+			  Q1 += -Ene[j]/boltzmann_RCpK*DOS[j]*exp(-beta*Ene[j]);
+			  Q2 += pow(Ene[j]/boltzmann_RCpK,2)*DOS[j]*exp(-beta*Ene[j]);
+		  }
+	  }
+	  S = idealGasC/Calorie_in_Joule*(2.5+1.5*log(2*M_PI*MW/1000)-4*log(AvogadroC)-3*log(PlancksConstant_in_JouleSecond)-log(atm_in_pascal)+2.5*log(idealGasC*temp)+log(Q)-Q1/Q/temp);
+	  Cp = idealGasC/Calorie_in_Joule*((Q2/Q-(Q1*Q1/Q/Q))/temp/temp+2.5);
+	  HmH0 = idealGasC/Calorie_in_Joule*(-Q1/Q+temp*2.5);
+	  ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << Q << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
+  }
+
 
   //
   // Inserts leading zeros to cellDOS and cellEne vector to accounts for the graining integrity.

@@ -79,9 +79,7 @@ $RECYCLE.BIN/
 *.sdf
 *.pdb
 *.suo
-*.cpp
-CL.write.1.tlog
-*read.1.tlog
+*.tlog
 *.cache
 *.idb
 *.ilk
