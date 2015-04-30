@@ -77,3 +77,4 @@ $RECYCLE.BIN/
 # VS project files
 *.opensdf
 *.sdf
+*.pdb
