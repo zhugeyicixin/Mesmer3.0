@@ -40,25 +40,25 @@ All molecules are on the same energy basis: arbitary
 The default value of precision (or one of its attributes) was used.
 20atm, 900K at d precision with He
 The default value of me:eigenvalues was used.
-Write metadata 20150504_014908
+Write metadata 20150504_020236
 In R1: Parsing reaction...
-In QOOH_1b: Error: Parameter label QOOH_1b:ZPE redefined.
-In QOOH_1b: Error: Parameter label QOOH_1b:deltaEDown redefined.
-In TS_1b_11: Error: Parameter label TS_1b_11:imFreqs redefined.
-In TS_1b_11: Error: Parameter label TS_1b_11:ZPE redefined.
+In QOOH_1b: Warning: Parameter label QOOH_1b:ZPE redefined.
+In QOOH_1b: Warning: Parameter label QOOH_1b:deltaEDown redefined.
+In TS_1b_11: Warning: Parameter label TS_1b_11:imFreqs redefined.
+In TS_1b_11: Warning: Parameter label TS_1b_11:ZPE redefined.
 In R1: No crossing method used for R1
 All molecules are on the same energy basis: arbitary
 20atm, 900K at d precision with He
-Write metadata 20150504_014909
+Write metadata 20150504_020237
 
 File: "TS_1b_11.xml" successfully parsed.
 Main Calculation begins
 In C9H18O_11+OH: The default value of me:symmetryNumber was used.
 In C9H18O_11+OH: The default value of spinMultiplicity (or one of its attributes) was used.
 In C9H18O_11+OH: The default value of me:DOSCMethod was used.
-In C9H18O_11+OH: Error: Parameter label C9H18O_11+OH:ZPE redefined.
+In C9H18O_11+OH: Warning: Parameter label C9H18O_11+OH:ZPE redefined.
 In FastLaplaceConvolution: 8100 values in the FFT convolution routine were replaced by standard convolution
 Finish Calculation of P-T case
- -- Total time elapsed: 70 seconds.
+ -- Total time elapsed: 69 seconds.
 
 System saved to mesmer_out.xml

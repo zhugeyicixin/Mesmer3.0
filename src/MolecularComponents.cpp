@@ -686,7 +686,41 @@ namespace mesmer
 					ctest << endl ;
 				}
 
+				//Add to XML document
+				PersistPtr ppItem = ppList->XmlWriteElement("me:densityOfStates");
+				ppItem->XmlWriteValueElement("me:T",    temp, 6);
+				ppItem->XmlWriteValueElement("me:qtot", qtot, 6);
+				ppItem->XmlWriteValueElement("me:sumc", cellCanPrtnFn, 6);
+				ppItem->XmlWriteValueElement("me:sumg", grainCanPrtnFn, 6);
+			}
 
+			if (m_host->getFlags().testDOSEnabled) ctest << "}" << endl;
+		}
+
+		// this inserted short code is used to calculate the thermodynamic data with rovibronic partition functions based on cells and grains
+		// including Cp, S and H(T) - H(0) at 1 atm
+		// units: cal, mol, K, i.e. Cp and S for cal/mol/K, H for cal/mol 
+		// the output can be found in the .test file
+		// the definitions could be unified at the beginning of this function if a formal edition needed in the future
+		int thermo_l = 8;
+		double thermo_T[]={298.15, 300, 400, 500, 600, 800, 1000, 1500};
+		double beta = 0.0;
+		gStructure& gs = m_host->getStruc();
+		double moleculeWeight = 0.0;
+		double thermo_qtot[3] = {1.0, 0.0, 0.0};
+		double tmp_prtnFn[3];
+
+		moleculeWeight = gs.getMass();
+
+		ctest << "thermodynamics:\t" << m_host->getName() << "\tgrainSize:\t" << m_host->getEnv().GrainSize << "\tEnergyAboveTheTopHill:\t"<< m_host->getEnv().EAboveHill << endl;
+		ctest << "Cp and S for cal/mol/K, H for cal/mol" << endl;
+
+		for (int i = 0; i< thermo_l; i++)
+		{
+			thermo_qtot[0] = 1.0;
+			thermo_qtot[1] = 0.0;
+			thermo_qtot[2] = 0.0;
+			
 			beta = 1.0/(boltzmann_RCpK*thermo_T[i]);
 
 			// Calculate rovibronic partition functions, using analytical formula where possible.

@@ -106,7 +106,7 @@
             <me:tmpnode_DOSCMethod name="ClassicalRotors" />
             <me:DOSCMethod default="true" name="ClassicalRotors" />
             <me:DistributionCalcMethod default="true" name="Boltzmann" />
-            <me:densityOfStatesList calculated="20150504_015019">
+            <me:densityOfStatesList calculated="20150504_020346">
                 <me:description>Rovibronic partition function calculation at various temperatures. qtot : product of QM partition functions for vibrations (1-D harmonic oscillator) and classical partition functions for rotations.  sumc : cell based partition function. sumg : grain based partition function </me:description>
                 <me:densityOfStates>
                     <me:T>200</me:T>
@@ -270,7 +270,7 @@
             </me:energyTransferModel>
             <me:tmpnode_DOSCMethod name="ClassicalRotors" />
             <me:DOSCMethod default="true" name="ClassicalRotors" />
-            <me:densityOfStatesList calculated="20150504_015015">
+            <me:densityOfStatesList calculated="20150504_020342">
                 <me:description>Rovibronic partition function calculation at various temperatures. qtot : product of QM partition functions for vibrations (1-D harmonic oscillator) and classical partition functions for rotations.  sumc : cell based partition function. sumg : grain based partition function </me:description>
                 <me:densityOfStates>
                     <me:T>200</me:T>
@@ -536,7 +536,7 @@
             </me:transitionState>
             <me:MCRCMethod name="SimpleRRKM" />
             <me:tunneling name="Eckart" />
-            <me:microRateList calculated="20150504_015019">
+            <me:microRateList calculated="20150504_020346">
                 <me:description>Microcanonical rate coefficients</me:description>
                 <me:microRate>
                     <me:T>100</me:T>
@@ -612,13 +612,13 @@
     <metadataList xmlns:dc="http://purl.org/dc/elements/1.1/">
         <dc:source>TS_1b_11.xml</dc:source>
         <dc:creator>Mesmer v3.0</dc:creator>
-        <dc:date>20150504_014909</dc:date>
+        <dc:date>20150504_020237</dc:date>
         <dc:contributor>Administrator</dc:contributor>
     </metadataList>
-    <me:analysis calculated="20150504_014909">
+    <me:analysis calculated="20150504_020237">
         <me:description>All calculations shown</me:description>
     </me:analysis>
-    <me:analysis calculated="20150504_015015">
+    <me:analysis calculated="20150504_020342">
         <me:description>All calculations shown</me:description>
         <me:rateList T="900" conc="1.63087e+020" bathGas="He" me:units="s-1">
             <me:firstOrderLoss ref="QOOH_1b">-1.48655e+006</me:firstOrderLoss>

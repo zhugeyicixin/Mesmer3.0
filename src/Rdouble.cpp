@@ -77,7 +77,7 @@ namespace mesmer
     labelmap::iterator itrlabel = withLabel().find(label) ;
 
     if (itrlabel != withLabel().end()) {
-      cerr << "Error: Parameter label " << label << " redefined." << endl;
+      cerr << "Warning: Parameter label " << label << " redefined." << endl;
     } else {
       withLabel()[label] = this ;
     }
