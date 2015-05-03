@@ -258,6 +258,155 @@ namespace mesmer
     return true;
   }
 
+  bool CollisionOperator::BuildTestReactionOperator(MesmerEnv &mEnv, MesmerFlags& mFlags, bool writeReport)
+  {
+	  const double SUPREMUM =  9e23 ;
+	  const double INFIMUM  = -SUPREMUM ;
+	  //
+	  // Find all the unique wells and lowest zero point energy.
+	  //
+	  m_isomers.clear();
+	  m_sources.clear(); // Maps the location of source in the system matrix.
+
+	  double minEnergy(SUPREMUM) ; // The minimum & maximum ZPE amongst all wells, set artificially large and small
+	  double maxEnergy(INFIMUM) ;  // to guarantee that each is overwritten in setting minEnergy and maxEnergy.
+
+	  Molecule *pBathGasMolecule = m_pMoleculeManager->find(mEnv.bathGasName);
+	  if(!pBathGasMolecule)
+	  {
+		  cerr << "The molecular data for the bath gas " << mEnv.bathGasName << " has not been found" <<endl;
+		  return false;
+	  }
+
+	  // populate molMapType with unimolecular species and determine minimum/maximum energy on the PES
+	  for (size_t i(0) ; i < m_pReactionManager->size() ; ++i) {
+		  double TS_ZPE(INFIMUM);
+
+		  Reaction *pReaction = (*m_pReactionManager)[i] ;
+
+		  // Reset the the microcanonical re-calculation flags if required.
+		  if (!mFlags.useTheSameCellNumber) pReaction->resetCalcFlag();
+
+		  // Transition State
+		  // third check for the transition state in this reaction
+		  Molecule *pTransitionState = pReaction->get_TransitionState();
+		  if (pTransitionState){
+			  TS_ZPE = pTransitionState->getDOS().get_zpe();
+			  maxEnergy = max(maxEnergy, TS_ZPE) ;
+		  }
+
+		  // unimolecular species
+		  vector<Molecule *> unimolecules ;
+		  pReaction->get_unimolecularspecies(unimolecules) ;
+		  // populate molMapType with unimolecular species
+		  for (size_t j(0) ; j < unimolecules.size() ; ++j) {
+			  // wells
+			  Molecule *pCollidingMolecule = unimolecules[j] ;
+			  const double collidingMolZPE(pCollidingMolecule->getDOS().get_zpe());
+			  if(pCollidingMolecule && m_isomers.find(pCollidingMolecule) == m_isomers.end()){ // New isomer
+				  m_isomers[pCollidingMolecule] = 0 ; //initialize to a trivial location
+
+				  minEnergy = min(minEnergy, collidingMolZPE) ;
+				  maxEnergy = max(maxEnergy, collidingMolZPE) ;
+			  }
+
+			  //calculate the lowest barrier associated with this well(species)
+			  if (TS_ZPE != INFIMUM){
+				  const double barrierHeight = TS_ZPE - collidingMolZPE;
+				  if (barrierHeight < pCollidingMolecule->getColl().getLowestBarrier()){
+					  pCollidingMolecule->getColl().setLowestBarrier(barrierHeight);
+				  }
+			  }
+		  }
+
+		  //
+		  // For Association reactions determine zero point energy location of the
+		  // associating pair.
+		  //
+		  AssociationReaction *pAReaction = dynamic_cast<AssociationReaction*>(pReaction) ;
+		  if (pAReaction) {
+			  double pseudoIsomerZPE = pAReaction->get_pseudoIsomer()->getDOS().get_zpe();
+			  double excessReactantZPE = pAReaction->get_excessReactant()->getDOS().get_zpe();
+			  double sourceTermZPE = pseudoIsomerZPE + excessReactantZPE;
+			  pAReaction->get_pseudoIsomer()->getDOS().set_zpe(sourceTermZPE);
+			  pAReaction->get_excessReactant()->getDOS().set_zpe(0.0);
+			  minEnergy = min(minEnergy, sourceTermZPE) ;
+			  maxEnergy = max(maxEnergy, sourceTermZPE) ;
+
+			  // Calculate the lowest barrier associated with this well(species)
+			  // For association reaction, it is assumed that the barrier height is close to the source term energy
+			  // and in a sense, it is preferable to set this variable to the source term energy even there is an explicit
+			  // transition state.
+			  double adductZPE = unimolecules[0]->getDOS().get_zpe();
+			  double barrierHeight = sourceTermZPE - adductZPE;
+			  if (barrierHeight < unimolecules[0]->getColl().getLowestBarrier()){
+				  unimolecules[0]->getColl().setLowestBarrier(barrierHeight);
+			  }
+		  }
+
+		  //
+		  // For irreversible exchange reactions determine zero point energy location of the
+		  // associating pair.
+		  //
+		  IrreversibleExchangeReaction *pIEReaction = dynamic_cast<IrreversibleExchangeReaction*>(pReaction) ;
+		  if (pIEReaction) {
+			  double pseudoIsomerZPE = pIEReaction->get_pseudoIsomer()->getDOS().get_zpe();
+			  double excessReactantZPE = pIEReaction->get_excessReactant()->getDOS().get_zpe();
+			  double sourceTermZPE = pseudoIsomerZPE + excessReactantZPE;
+			  minEnergy = min(minEnergy, sourceTermZPE) ;
+			  maxEnergy = max(maxEnergy, sourceTermZPE) ;
+
+			  // There is no well for this reaction
+		  }
+
+		  //
+		  // For irreversible unimolecular reactions determine zero point energy location of the barrier
+		  //
+		  IrreversibleUnimolecularReaction *pDissnRtn = dynamic_cast<IrreversibleUnimolecularReaction*>(pReaction) ;
+		  if (pDissnRtn) {
+			  const double rctZPE = pDissnRtn->get_reactant()->getDOS().get_zpe();
+			  double barrierZPE = rctZPE + pDissnRtn->get_ThresholdEnergy();
+			  minEnergy = min(minEnergy, barrierZPE) ;
+			  maxEnergy = max(maxEnergy, barrierZPE) ;
+
+			  // Calculate the lowest barrier associated with this well(species).
+			  if (barrierZPE < unimolecules[0]->getColl().getLowestBarrier()){
+				  unimolecules[0]->getColl().setLowestBarrier(barrierZPE);
+			  }
+		  }
+
+		  // drg 15 Dec 2011
+		  // For bimolecular sink reactions, determine the zero point energy of the bimolecular barrier (presently zero)
+		  //
+		  BimolecularSinkReaction *pBimSinkRxn = dynamic_cast<BimolecularSinkReaction*>(pReaction) ;
+		  if (pBimSinkRxn){
+			  const double rctZPE = pBimSinkRxn->get_reactant()->getDOS().get_zpe();
+			  double barrierZPE = rctZPE + pBimSinkRxn->get_ThresholdEnergy();
+			  minEnergy = min(minEnergy, barrierZPE);
+			  maxEnergy = max(maxEnergy, barrierZPE);
+		  }
+
+		  //
+		  // Find all source terms. Note: a source term contains the deficient reactant.
+		  // It is possible for there to be more than one source term.
+		  //
+		  pReaction->updateSourceMap(m_sources) ;
+
+	  }
+
+	  // Set grain parameters for the current Temperature/pressure condition.
+	  if(!SetGrainParams(mEnv, mFlags, minEnergy, maxEnergy, writeReport))
+		  return false;
+
+	  // Calculate flux and k(E)s
+	  for (size_t i(0) ; i < m_pReactionManager->size() ; ++i) {
+		  if(!(*m_pReactionManager)[i]->calcTestGrnAvrgPrtnFn())
+			  return false;
+	  }
+
+	  return true;
+  }
+
   // Sets grain parameters and determine system environment.
   bool CollisionOperator::SetGrainParams(MesmerEnv &mEnv, const MesmerFlags& mFlags, const double minEne, const double maxEne, bool writeReport)
   {

@@ -30,7 +30,7 @@ namespace mesmer
 
     //Function to do the work
     virtual bool DoCalculation(System* pSys)=0;
-
+	virtual bool DoTestCalculation(System* pSys) { ctest << "calcmethod::DoTestCalculation\tTypeID:\t" << getTypeID() << endl; return true; };
     //Parses the <me:control> section of the XML input file to find the specified method
     //For instance: <calcMethod>simpleCalc</calcMethod>
     //If there is no <calcMethod> element, the simpleCalc, set in defaults.xml, is used.

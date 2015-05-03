@@ -14,6 +14,9 @@ namespace mesmer
     // Function to calculate contribution to canonical partition function.
     virtual double canPrtnFnCntrb(gDensityOfStates* gdos, double beta) ;
 
+	// Function to calculate contribution to canonical partition function and the derivatives.
+	virtual bool canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn) ;
+
     // Function to return the number of degrees of freedom associated with this count.
     virtual unsigned int NoDegOfFreedom(gDensityOfStates* gdos) ;
 
@@ -77,6 +80,28 @@ namespace mesmer
     }
 
     return qtot ;
+  }
+
+  // Function to calculate contribution to canonical partition function and the derivatives.
+  // prtnFn[0] is the partition function z1*z2*...*zj*...*zn
+  // prtnFn[1] denotes for sum(z'[j]/z[j])
+  // prtnFn[2] denotes for sum((z'[j]/z[j])')=sum(z''[j]/z[j]-(z'[j]/z[j])^2)
+  // z'[j] is dz/d(1/T)
+  bool BeyerSwinehart::canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn)
+  {
+	  prtnFn[0] = 1.0;
+	  prtnFn[1] = 0.0;
+	  prtnFn[2] = 0.0;
+
+	  vector<double> vibFreq; 
+	  gdos->get_VibFreq(vibFreq);
+	  for (size_t j(0) ; j < vibFreq.size() ; ++j ) {
+		  prtnFn[0] /= (1.0 - exp(-beta*vibFreq[j])) ;
+		  prtnFn[1] += -vibFreq[j]/boltzmann_RCpK * exp(-beta*vibFreq[j]) / (1.0-exp(-beta*vibFreq[j]));
+		  prtnFn[2] += pow(vibFreq[j]/boltzmann_RCpK, 2) * exp(-beta*vibFreq[j]) / pow((1.0-exp(-beta*vibFreq[j])), 2);
+	  }
+
+	  return true ;
   }
 
   // Function to return the number of degrees of freedom associated with this count.

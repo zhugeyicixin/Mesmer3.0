@@ -16,6 +16,8 @@ public:
 
     //Function to do the work
   virtual bool DoCalculation(System* pSys)  ;
+  virtual bool DoTestCalculation(System* pSys);
+
 private:
   const char* m_id;
 
@@ -30,6 +32,13 @@ bool SimpleCalc::DoCalculation(System* pSys)
 {
   double chiSquare(1000.0);
   return pSys->calculate(chiSquare) ;
+}
+
+bool SimpleCalc::DoTestCalculation(System* pSys)
+{
+	double chiSquare(1000.0);
+	ctest << "simplecalc::DoTestCalculation\tTypeID:\t" << getID() << endl;
+	return pSys->testCalculate(chiSquare) ;
 }
 
 }//namespace

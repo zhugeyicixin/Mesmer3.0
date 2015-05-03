@@ -17,12 +17,6 @@ namespace mesmer
   double canonicalPartitionFunction(const vector<double>& DOS, const vector<double>& Ene, const double beta){
 
     double CanPrtnFn(0.0) ;
-	double temp = 0.0;
-	double Q, Q1, Q2, S, Cp, HmH0;
-	Q = 0.0;
-	Q1 = 0.0;
-	Q2 = 0.0;
-	temp = 1.0/boltzmann_RCpK/beta;
 	
 	// add the function to calculate the partition function and the derivatives and output the thermodynamic data to the .test file
 	// Q denotes the partition function, which is the same as CanPrtnFn in the original code
@@ -33,18 +27,10 @@ namespace mesmer
       if (DOS[j] > 0.0)
 	  {
         CanPrtnFn += exp( log(DOS[j]) - beta*Ene[j] ) ;
-		Q += DOS[j]*exp(-beta*Ene[j]);
-		Q1 += -Ene[j]/boltzmann_RCpK*DOS[j]*exp(-beta*Ene[j]);
-		Q2 += pow(Ene[j]/boltzmann_RCpK,2)*DOS[j]*exp(-beta*Ene[j]);
 	  }
     }
-	M_PI;
-	//S = idealGasC/Calorie_in_Joule*log(Q)-idealGasC/Calorie_in_Joule*Q1/Q/temp+1.5*idealGasC/Calorie_in_Joule+idealGasC/Calorie_in_Joule*(11.16970828-log(atm_in_pascal)+2.5*log(idealGasC*temp));
-	S = idealGasC/Calorie_in_Joule*(2.5+1.5*log(2*M_PI*0.159)-4*log(AvogadroC)-3*log(PlancksConstant_in_JouleSecond)-log(atm_in_pascal)+2.5*log(idealGasC*temp)+log(Q)-Q1/Q/temp);
-	Cp = idealGasC/Calorie_in_Joule/temp/temp*(Q2/Q-(Q1*Q1/Q/Q))+idealGasC/Calorie_in_Joule*2.5;
-	HmH0 = -idealGasC/Calorie_in_Joule*Q1/Q+idealGasC/Calorie_in_Joule*temp*2.5;
-	ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << Q << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
-    return CanPrtnFn;
+
+	return CanPrtnFn;
 
   }
 
@@ -62,19 +48,16 @@ namespace mesmer
 
   }
 
-  // add the function to calculate the partition function and the derivatives and output the thermodynamic data to the .test file
+  // add the function to calculate the partition function and the derivatives
   // Q denotes the partition function, which is the same as CanPrtnFn in the original code
   // Q1 denotes the first derivatives
   // Q2 denotes the second derivatives
   // units: cal, mol, K, i.e. Cp and S for cal/mol/K, H for cal/mol
-  void thermodynamicCalc(const vector<double>& DOS, const vector<double>& Ene, const double beta, double MW)
+  bool canonicalTestPartitionFunction(const vector<double>& DOS, const vector<double>& Ene, const double beta, double* prtnFn)
   {
-	  double temp = 0.0;
-	  double Q, Q1, Q2, S, Cp, HmH0;
-	  Q = 0.0;
-	  Q1 = 0.0;
-	  Q2 = 0.0;
-	  temp = 1.0/boltzmann_RCpK/beta;
+	  double Q = 0.0;
+	  double Q1 = 0.0;
+	  double Q2 = 0.0;
 
 	  for (size_t i(0), j(DOS.size()-1); i < DOS.size(); i++, j--) {
 		  if (DOS[j] > 0.0)
@@ -84,10 +67,28 @@ namespace mesmer
 			  Q2 += pow(Ene[j]/boltzmann_RCpK,2)*DOS[j]*exp(-beta*Ene[j]);
 		  }
 	  }
-	  S = idealGasC/Calorie_in_Joule*(2.5+1.5*log(2*M_PI*MW/1000)-4*log(AvogadroC)-3*log(PlancksConstant_in_JouleSecond)-log(atm_in_pascal)+2.5*log(idealGasC*temp)+log(Q)-Q1/Q/temp);
-	  Cp = idealGasC/Calorie_in_Joule*((Q2/Q-(Q1*Q1/Q/Q))/temp/temp+2.5);
-	  HmH0 = idealGasC/Calorie_in_Joule*(-Q1/Q+temp*2.5);
-	  ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << Q << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
+
+	  prtnFn[0] = Q;
+	  prtnFn[1] = Q1/Q;
+	  prtnFn[2] = Q2/Q - pow(Q1/Q, 2);
+
+	  return true;
+  }
+
+  // Function to calculate the thermodynamic data and output to the .test file
+  // prtnFn[0] is the partition function z1*z2*...*zj*...*zn
+  // prtnFn[1] denotes for sum(z'[j]/z[j])
+  // prtnFn[2] denotes for sum((z'[j]/z[j])')=sum(z''[j]/z[j]-(z'[j]/z[j])^2)
+  // z'[j] is dz/d(1/T)
+  void thermodynamicCalc(const double* prtnFn,const double beta, double MW)
+  {
+	  double temp = 1.0/boltzmann_RCpK/beta;
+	  double S, Cp, HmH0;
+
+	  S = idealGasC/Calorie_in_Joule*(2.5+1.5*log(2*M_PI*MW/1000)-4*log(AvogadroC)-3*log(PlancksConstant_in_JouleSecond)-log(atm_in_pascal)+2.5*log(idealGasC*temp)+log(prtnFn[0])-prtnFn[1]/temp);
+	  Cp = idealGasC/Calorie_in_Joule*(prtnFn[2]/temp/temp+2.5);
+	  HmH0 = idealGasC/Calorie_in_Joule*(-prtnFn[1]+temp*2.5);
+	  ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << prtnFn[0] << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
   }
 
 

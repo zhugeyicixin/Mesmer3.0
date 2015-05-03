@@ -21,8 +21,11 @@ namespace mesmer
 
   double canonicalMeanEnergy(const vector<double>& DOS, const vector<double>& Ene, const double beta);
 
-  // calculate the thermodynamic data and output to the .test file
-  void thermodynamicCalc(const vector<double>& DOS, const vector<double>& Ene, const double beta, double MW);
+  // add the function to calculate the partition function and the derivatives
+  bool canonicalTestPartitionFunction(const vector<double>& DOS, const vector<double>& Ene, const double beta, double* prtnFn);
+
+  // Function to calculate the thermodynamic data and output to the .test file
+  void thermodynamicCalc(const double* prtnFn,const double beta, double MW);
 
   // shift cell DOS and energy vectors according to cellOffset
   void shiftCells(int MaximumCell, int cellOffset, const vector<double>& cellDOS, const vector<double>& cellEne,

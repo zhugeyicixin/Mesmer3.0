@@ -30,6 +30,9 @@ namespace mesmer
     // Function to calculate contribution to canonical partition function.
     virtual double canPrtnFnCntrb(gDensityOfStates* gdos, double beta) ;
 
+	// Function to calculate contribution to canonical partition function and the derivatives.
+	virtual bool canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn) ;
+
     // Function to return the number of degrees of freedom associated with this count.
     virtual unsigned int NoDegOfFreedom(gDensityOfStates* gdos) {return 1 ; } ;
 
@@ -359,6 +362,54 @@ namespace mesmer
     }
 
     return Qintrot*Qhdr/double(npnts) ;
+  }
+
+  // Function to calculate contribution to canonical partition function and the derivatives.
+  // prtnFn[0] is the partition function z1*z2*...*zj*...*zn
+  // prtnFn[1] denotes for sum(z'[j]/z[j])
+  // prtnFn[2] denotes for sum((z'[j]/z[j])')=sum(z''[j]/z[j]-(z'[j]/z[j])^2)
+  // z'[j] is dz/d(1/T)
+  bool HinderedRotorCM1D::canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn)
+  {
+	  prtnFn[0] = 1.0;
+	  prtnFn[1] = 0.0;
+	  prtnFn[2] = 0.0;
+
+	  double temp = 1.0/boltzmann_RCpK/beta;
+
+	  //
+	  // Calculate the free rotor term first.
+	  //
+	  double Qintrot = sqrt(M_PI*m_reducedMomentInertia/conMntInt2RotCnt/beta)/double(m_periodicity) ;
+	  prtnFn[0] *= sqrt(M_PI*m_reducedMomentInertia/conMntInt2RotCnt/beta)/double(m_periodicity);
+	  prtnFn[1] += -0.5*temp;
+	  prtnFn[2] += 0.5*temp*temp;
+
+	  //
+	  // Calculate the hindering potential correction via numerical integration.
+	  //
+	  const size_t npnts(1000) ;
+	  const double intvl(2*M_PI/double(npnts)) ;
+	  double Q = 0.0;
+	  double Q1 = 0.0;
+	  double Q2 = 0.0;
+	  for (size_t i(0); i < npnts; ++i) {
+		  double ptnl(0.0) ;
+		  double angle(double(i)*intvl) ;
+		  for(size_t k(0); k < m_expansion; ++k) {
+			  double nTheta = double(k) * angle;
+			  ptnl += m_potentialCosCoeff[k] * cos(nTheta);
+		  }
+		  Q += exp(-beta*ptnl);
+		  Q1 += -ptnl/boltzmann_RCpK * exp(-beta*ptnl);
+		  Q2 += pow(ptnl/boltzmann_RCpK, 2) * exp(-beta*ptnl);
+	  }
+
+	  prtnFn[0] *= Q/double(npnts);
+	  prtnFn[1] += Q1/Q;
+	  prtnFn[2] += Q2/Q - pow(Q1/Q, 2);
+
+	  return true;
   }
 
   //

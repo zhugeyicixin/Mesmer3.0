@@ -135,6 +135,53 @@ namespace mesmer
   }
 
   //
+  // Calculate test grain averaged microcanonical rate coefficients.
+  //
+  bool Reaction::calcTestGrnAvrgPrtnFn() {
+		int i = 0;
+
+		ctest	<< "Reaction::calcTestGrnAvrgPrtnFn\tReactionType:\t" << getReactionType() << endl; 
+
+		vector<Molecule*> pReacts; 
+		int num_reacts = get_reactants(pReacts);
+		for(i = 0; i < num_reacts; i++)
+		{
+			vector<double> reactcellDOS;
+
+			if (!pReacts[i]->getDOS().getCellDensityOfStates(reactcellDOS))
+			{
+				return false;
+			}
+		}
+
+		Molecule* pTS = get_TransitionState();
+
+		if(!pTS)
+		{
+			cerr << "Lack of transition state in reaction " << getName() << " for SimpleRRKM" << endl;
+			return false;
+		}
+
+		// Allocate some work space for density of states.
+		vector<double> TScellDOS; // Transistion state density of states.
+		if(!pTS->getDOS().getCellDensityOfStates(TScellDOS))
+			return false; // Extract densities of states from molecules.
+
+		vector<Molecule*> pProds; 
+		int num_Prods = get_products(pProds);
+		for(i = 0; i < num_Prods; i++)
+		{
+			vector<double> prodcellDOS;
+			if (!pProds[i]->getDOS().getCellDensityOfStates(prodcellDOS))
+			{
+				return false;
+			}
+		}	  
+
+	  return true;
+  }
+
+  //
   // Access microcanonical rate coefficients - cell values are averaged
   // to give grain values. This code is similar to that in Molecule.cpp
   // and this averaging should be done there. SHR 19/Sep/2004.
@@ -154,6 +201,29 @@ namespace mesmer
     calcGrainRateCoeffs();
 
     return true;
+  }
+
+
+  //
+  // Access microcanonical rate coefficients - cell values are averaged
+  // to give grain values. This code is similar to that in Molecule.cpp
+  // and this averaging should be done there. SHR 19/Sep/2004.
+  //
+  bool Reaction::testGrnAvrgMicroRateCoeffs() {
+	  // This grain averaging of the microcanonical rate coefficients is
+	  // based on the view from the species that is
+	  // moving in the current reaction toward the opposite species.
+
+	  std::vector<double> shiftedCellFlux;
+	  //shiftCellFlux(shiftedCellFlux);
+
+	  // convert flux from cells to grains
+	  //fluxCellToGrain(shiftedCellFlux);
+
+	  // Calculate forward and backward grained microcanonical rate coefficients
+	  calcTestGrainRateCoeffs();
+
+	  return true;
   }
 
   // set the bottom energy of m_CellFlux

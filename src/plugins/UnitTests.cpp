@@ -531,6 +531,7 @@ namespace mesmer
     size_t MaximumCell(50000) ;
     vector<double> cellDOS(MaximumCell, 0.0) ;
     cellDOS[0] = 1.0 ;
+	printf("UnitTests:Test_MEIC_1");
     pMol->getDOS().setCellDensityOfStates(cellDOS) ; 
 
     status = status && pDOSCalculator->countCellDOS(&(pMol->getDOS()), MaximumCell) ;
@@ -564,6 +565,7 @@ namespace mesmer
     size_t MaximumCell(50000) ;
     vector<double> cellDOS(MaximumCell, 0.0) ;
     cellDOS[0] = 1.0 ;
+	printf("UnitTests:Test_MEIC_Anharmonic");
     pMol->getDOS().setCellDensityOfStates(cellDOS) ;
 
     //Use the instance of Morse plugin initialized earlier.
@@ -594,6 +596,7 @@ namespace mesmer
 
     size_t MaximumCell(50000) ;
     vector<double> cellDOS(MaximumCell, 0.0) ;
+	printf("UnitTests:Test_MEIC_Rotors");
     pMol->getDOS().setCellDensityOfStates(cellDOS) ;
 
     status = status && pDOSCalculator->countCellDOS(&(pMol->getDOS()), MaximumCell) ;
@@ -625,6 +628,7 @@ namespace mesmer
     size_t MaximumCell(50000) ;
     vector<double> cellDOS(MaximumCell, 0.0) ;
 	cellDOS[0] = 1.0 ;
+	printf("UnitTests:Test_MEIC_HinderedRotor\n");
     pMol->getDOS().setCellDensityOfStates(cellDOS) ;
 
     PersistPtr ppMol = pMol->get_PersistentPointer() ;

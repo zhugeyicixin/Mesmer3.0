@@ -160,8 +160,25 @@ void FastLaplaceConvolution(const vector<double> &data1original,
 	// removing them, and then placing them back in after we finish the convolution.
 
 	size_t i, NumberZeroElements1(0), NumberZeroElements2(0);
-	while(data1original[NumberZeroElements1]==0.0 && NumberZeroElements1 < arraySize) {++NumberZeroElements1;}
-	while(data2original[NumberZeroElements2]==0.0 && NumberZeroElements2 < arraySize) {++NumberZeroElements2;}
+	while(NumberZeroElements1 < arraySize && data1original[NumberZeroElements1]==0.0) 
+	{
+		++NumberZeroElements1;
+		// there is a ambiguity in the judgement of NumberZeroElements1 < arraySize && data1original[NumberZeroElements1]==0.0 
+		// because different compliers process the child conditions in different ways (one by one or treat as entire)
+		// the if below is use to avoid this situation. in fact the array size detection in the while brackets can be removed 
+		if(NumberZeroElements1 >= arraySize)
+		{
+			break;
+		}
+	}
+	while(NumberZeroElements2 < arraySize && data2original[NumberZeroElements2]==0.0) 
+	{
+		++NumberZeroElements2;
+		if(NumberZeroElements2 >= arraySize)
+		{
+			break;
+		}
+	}
 
 	if (NumberZeroElements1 == arraySize || NumberZeroElements2 == arraySize ) {
 		cinfo << endl << "A null array has been detected in the convolution method." << endl;

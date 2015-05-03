@@ -111,7 +111,10 @@ namespace mesmer
     // Grain averaged microcanonical rate coefficients.
     virtual void calcGrainRateCoeffs();
 
-    void calcFluxFirstNonZeroIdx(void);
+	// Test grain averaged microcanonical rate coefficients.
+	virtual void calcTestGrainRateCoeffs();
+
+	void calcFluxFirstNonZeroIdx(void);
 
     // Test k(T)
     virtual void testRateConstant();

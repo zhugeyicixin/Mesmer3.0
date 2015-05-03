@@ -85,6 +85,8 @@ appropriate, and the functions getParent and setParent and should be compatible.
    // Method to calculate the microcanoical flux (W(E)/h) at the transition state.
     virtual bool calculateMicroCnlFlux(Reaction* pReact) = 0 ;
 
+	virtual bool calculateTestMicroCnlFlux(Reaction* pReact) { ctest << "MicroRate::calculateTestMicroCnlFlux\tTypeID:\t" << getID() << endl; return true; } ;
+
     virtual bool testMicroRateCoeffs(Reaction* pReact, PersistPtr ppbase) const;
 
     virtual double get_ThresholdEnergy(Reaction* pReac) ;

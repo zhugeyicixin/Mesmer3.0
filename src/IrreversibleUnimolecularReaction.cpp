@@ -220,6 +220,50 @@ namespace mesmer
       testRateConstant();
   }
 
+
+  //
+  // Calculate test grained forward k(E)s from transition state flux
+  //
+  void IrreversibleUnimolecularReaction::calcTestGrainRateCoeffs(){
+	  vector<double> rctGrainDOS;
+
+	  ctest	<< "IrreversibleUnimolecularReaction::calcTestGrainRateCoeffs\tReactionType:\t" << getReactionType() << endl; 
+
+	  m_rct1->getDOS().getGrainDensityOfStates(rctGrainDOS) ;
+
+	  calcEffGrnThresholds();
+	  const int forwardTE = get_EffGrnFwdThreshold();
+	  calcFluxFirstNonZeroIdx();
+	  const int fluxStartIdx = get_fluxFirstNonZeroIdx();
+
+	  const int MaximumGrain = (getEnv().MaxGrn-fluxStartIdx);
+	  m_GrainKfmc.clear();
+	  m_GrainKfmc.resize(MaximumGrain , 0.0);
+
+	  // calculate forward k(E)s from flux
+	  for (int i = forwardTE, j = fluxStartIdx; i < MaximumGrain; ++i, ++j){
+		  m_GrainKfmc[i] = m_GrainFlux[j] / rctGrainDOS[i];
+	  }
+
+	  // the code that follows is for printing the forward k(E)s
+	  if (getFlags().kfEGrainsEnabled){
+		  ctest << "\nk_f(e) grains for " << getName() << ":\n{\n";
+		  for (int i = 0; i < MaximumGrain; ++i){
+			  ctest << m_GrainKfmc[i] << endl;
+		  }
+		  ctest << "}\n";
+	  }
+	  if (getFlags().grainTSsosEnabled){
+		  ctest << "\nN(e) for TS of " << getName() << " (referenced to " << (this->get_reactant())->getName() << " energy):\n{\n";
+		  for (int i = 0; i < MaximumGrain; ++i){
+			  ctest << m_GrainKfmc[i]*rctGrainDOS[i]/SpeedOfLight_in_cm << endl;
+		  }
+		  ctest << "}\n";
+	  }
+	  if (getFlags().testRateConstantEnabled)
+		  testRateConstant();
+  }
+
   void IrreversibleUnimolecularReaction::calcFluxFirstNonZeroIdx(void) {
 		  double thresh = get_ThresholdEnergy();
 			if(thresh<0.0){m_GrnFluxFirstNonZeroIdx = int(-thresh/getEnv().GrainSize);}

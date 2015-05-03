@@ -20,154 +20,154 @@
 
 namespace mesmer
 {
-  class SensitivityAnalysis : public CalcMethod, private FittingUtils
-  {
-  public:
+	class SensitivityAnalysis : public CalcMethod, private FittingUtils
+	{
+	public:
 
-    SensitivityAnalysis(const char* id) : m_id(id), m_nVar(0), m_maxIterations(0), m_delta(0) { Register(); }
+		SensitivityAnalysis(const char* id) : m_id(id), m_nVar(0), m_maxIterations(0), m_delta(0) { Register(); }
 
-    virtual ~SensitivityAnalysis() {}
-    virtual const char* getID()  { return m_id; }
-    virtual bool ParseData(PersistPtr pp);
+		virtual ~SensitivityAnalysis() {}
+		virtual const char* getID()  { return m_id; }
+		virtual bool ParseData(PersistPtr pp);
 
-    //Function to do the work
-    virtual bool DoCalculation(System* pSys);
+		//Function to do the work
+		virtual bool DoCalculation(System* pSys);
 
-  private:
+	private:
 
-    const char* m_id;
+		const char* m_id;
 
-    size_t m_nVar ;          // Dimension of analysis.
+		size_t m_nVar ;          // Dimension of analysis.
 
-    size_t m_maxIterations ;
+		size_t m_maxIterations ;
 
-    vector<double> m_delta ;
+		vector<double> m_delta ;
 
-  };
+	};
 
-  ////////////////////////////////////////////////
-  //Global instance
-  SensitivityAnalysis theSensitivityAnalysis("SensitivityAnalysis");
-  ///////////////////////////////////////////////
+	////////////////////////////////////////////////
+	//Global instance
+	SensitivityAnalysis theSensitivityAnalysis("SensitivityAnalysis");
+	///////////////////////////////////////////////
 
-  bool SensitivityAnalysis::ParseData(PersistPtr pp)
-  {
-    // Read in sensitivity analysis parameters, or use values from defaults.xml.
-    m_maxIterations= pp->XmlReadInteger("me:SensitivityAnalysisIterations");
-    /*m_delta = pp->XmlReadDouble("me:SensitivityAnalysisDelta");*/
-    return true;
-  }
-
-  bool SensitivityAnalysis::DoCalculation(System* pSys)
-  {
-
-    m_nVar = Rdouble::withRange().size() ;
-
-    if (m_nVar < 1) { 
-      cerr << "Sensitivity analysis requries at least one range variable to be set." << endl;
-      return false ;
-    }
-
-	//Read variable uncertainties from range
-	for (size_t iVar(0) ; iVar < m_nVar ; iVar++) {
-        Rdouble var = *Rdouble::withRange()[iVar] ;
-		double lower = var.get_lower();
-		double upper = var.get_upper();
-        double middle = upper-((upper - lower) / 2.0);
-		m_delta.push_back(abs((middle - lower) / middle));
+	bool SensitivityAnalysis::ParseData(PersistPtr pp)
+	{
+		// Read in sensitivity analysis parameters, or use values from defaults.xml.
+		m_maxIterations= pp->XmlReadInteger("me:SensitivityAnalysisIterations");
+		/*m_delta = pp->XmlReadDouble("me:SensitivityAnalysisDelta");*/
+		return true;
 	}
 
-    //Do not output all the intermediate results to XML
-    pSys->m_Flags.overwriteXmlAnalysis = true;
+	bool SensitivityAnalysis::DoCalculation(System* pSys)
+	{
 
-    // Use the same grain numbers for for all calcuations regardless of 
-    // temperature (i.e. reduce the number of times micro-rates are calculated).
-    pSys->m_Flags.useTheSameCellNumber = true;
+		m_nVar = Rdouble::withRange().size() ;
 
-    // Uncomment to enable ctest output during fitting. Or use -w5 option in command.
-    //ChangeErrorLevel e(obDebug); 
+		if (m_nVar < 1) { 
+			cerr << "Sensitivity analysis requries at least one range variable to be set." << endl;
+			return false ;
+		}
 
-    //Default is to disable ctest during fitting. Restored when leaving this function.
-    StopCTestOutput stop(true) ;
+		//Read variable uncertainties from range
+		for (size_t iVar(0) ; iVar < m_nVar ; iVar++) {
+			Rdouble var = *Rdouble::withRange()[iVar] ;
+			double lower = var.get_lower();
+			double upper = var.get_upper();
+			double middle = upper-((upper - lower) / 2.0);
+			m_delta.push_back(abs((middle - lower) / middle));
+		}
 
-    //
-    // Begin by finding the starting point chi-squared value.
-    //
+		//Do not output all the intermediate results to XML
+		pSys->m_Flags.overwriteXmlAnalysis = true;
 
-    vector<double> currentLocation(m_nVar,0.0) ; 
-    vector<double> newLocation(m_nVar,0.0) ; 
+		// Use the same grain numbers for for all calcuations regardless of 
+		// temperature (i.e. reduce the number of times micro-rates are calculated).
+		pSys->m_Flags.useTheSameCellNumber = true;
 
-    GetLocation(currentLocation) ;
+		// Uncomment to enable ctest output during fitting. Or use -w5 option in command.
+		//ChangeErrorLevel e(obDebug); 
 
-    // Invoke SetLocation to catch any constrained parameters.
-    SetLocation(currentLocation) ;
+		//Default is to disable ctest during fitting. Restored when leaving this function.
+		StopCTestOutput stop(true) ;
 
-    vector<double> Temperature ;
-    vector<double> Concentration ;
-    pSys->getConditions (Temperature, Concentration) ;
+		//
+		// Begin by finding the starting point chi-squared value.
+		//
 
-	// Instantiate a random vector generator.
-    Sobol sobol ;
+		vector<double> currentLocation(m_nVar,0.0) ; 
+		vector<double> newLocation(m_nVar,0.0) ; 
 
-	// Loop over condiditons. 
-    size_t nConditions = Temperature.size() ;
-    for (size_t nCnd(0) ; nCnd < nConditions ; nCnd++) {
+		GetLocation(currentLocation) ;
 
-      // String stream to hold results. 
-      stringstream sensitivityTable ;
+		// Invoke SetLocation to catch any constrained parameters.
+		SetLocation(currentLocation) ;
 
-	  // Write out table header.
+		vector<double> Temperature ;
+		vector<double> Concentration ;
+		pSys->getConditions (Temperature, Concentration) ;
 
-	  sensitivityTable << endl ;
-	  sensitivityTable << "Sensitivity Table" << endl ;
-	  sensitivityTable << "  Temperature:   " << formatFloat(Temperature[nCnd],   5, 15) << " K"    << endl ;
-	  sensitivityTable << "  Concentration: " << formatFloat(Concentration[nCnd], 5, 15) << " ppcc" << endl ;
-      sensitivityTable << endl ;
-      for (size_t iVar(0) ; iVar < m_nVar ; iVar++) {
-        Rdouble var = *Rdouble::withRange()[iVar] ;
-        sensitivityTable << setw(15) << var.get_varname() ; 
-	  }
-      sensitivityTable << endl ;
+		// Instantiate a random vector generator.
+		Sobol sobol ;
 
-	  // Loop over perturbed parameter values.
+		// Loop over condiditons. 
+		size_t nConditions = Temperature.size() ;
+		for (size_t nCnd(0) ; nCnd < nConditions ; nCnd++) {
 
-      long long seed(0) ;
-      for (size_t itr(1) ; itr <= m_maxIterations ; itr++) {
-        vector<double> rndmd(m_nVar,0.0) ;
-        sobol.sobol(rndmd.size(), &seed, rndmd) ;
+			// String stream to hold results. 
+			stringstream sensitivityTable ;
 
-		// Use random vector generated by sobol method to perturb parameter values.
+			// Write out table header.
 
-        for (size_t j(0) ; j < rndmd.size() ; j++) {
-          newLocation[j] = currentLocation[j]*(1.0 + (m_delta[j])*(rndmd[j] - 0.5)) ;
-        }
+			sensitivityTable << endl ;
+			sensitivityTable << "Sensitivity Table" << endl ;
+			sensitivityTable << "  Temperature:   " << formatFloat(Temperature[nCnd],   5, 15) << " K"    << endl ;
+			sensitivityTable << "  Concentration: " << formatFloat(Concentration[nCnd], 5, 15) << " ppcc" << endl ;
+			sensitivityTable << endl ;
+			for (size_t iVar(0) ; iVar < m_nVar ; iVar++) {
+				Rdouble var = *Rdouble::withRange()[iVar] ;
+				sensitivityTable << setw(15) << var.get_varname() ; 
+			}
+			sensitivityTable << endl ;
 
-		// Set perturbed parameters and calculate new quantities.
+			// Loop over perturbed parameter values.
 
-        SetLocation(newLocation) ;
-        vector<double> Quantities ;
-        pSys->calculate(nCnd, Quantities, false) ;
+			long long seed(0) ;
+			for (size_t itr(1) ; itr <= m_maxIterations ; itr++) {
+				vector<double> rndmd(m_nVar,0.0) ;
+				sobol.sobol(rndmd.size(), &seed, rndmd) ;
 
-		// Write perturbed parameters and values calculated from them.
-		// SHR: Note the loop over the calculated values is two so as to
-		// miss out the expt. values.
+				// Use random vector generated by sobol method to perturb parameter values.
 
-        for (size_t j(0) ; j < newLocation.size() ; j++) {
-          sensitivityTable << formatFloat(rndmd[j], 5, 15) ;
-        }
-        for (size_t j(1) ; j < Quantities.size() ; j += 2) {
-          sensitivityTable << formatFloat(Quantities[j], 5, 15) ;
-        }
-        sensitivityTable << endl ;
+				for (size_t j(0) ; j < rndmd.size() ; j++) {
+					newLocation[j] = currentLocation[j]*(1.0 + (m_delta[j])*(rndmd[j] - 0.5)) ;
+				}
 
-      }
+				// Set perturbed parameters and calculate new quantities.
 
-	  cinfo << sensitivityTable.str() << endl ;
-    }
+				SetLocation(newLocation) ;
+				vector<double> Quantities ;
+				pSys->calculate(nCnd, Quantities, false) ;
 
-    return true;
+				// Write perturbed parameters and values calculated from them.
+				// SHR: Note the loop over the calculated values is two so as to
+				// miss out the expt. values.
 
-  }
+				for (size_t j(0) ; j < newLocation.size() ; j++) {
+					sensitivityTable << formatFloat(rndmd[j], 5, 15) ;
+				}
+				for (size_t j(1) ; j < Quantities.size() ; j += 2) {
+					sensitivityTable << formatFloat(Quantities[j], 5, 15) ;
+				}
+				sensitivityTable << endl ;
+
+			}
+
+			cinfo << sensitivityTable.str() << endl ;
+		}
+
+		return true;
+
+	}
 
 
 } //namespace

@@ -40,6 +40,9 @@ namespace mesmer
     // Build reaction operator for system.
     bool BuildReactionOperator(MesmerEnv &mEnv, MesmerFlags& mFlags, bool writeReport = false) ;
 
+	// Build test reaction operator for system.
+	bool BuildTestReactionOperator(MesmerEnv &mEnv, MesmerFlags& mFlags, bool writeReport = false) ;
+
     // Diagonalize the reaction operator.
     void diagReactionOperator(const MesmerFlags &mFlags, const MesmerEnv &mEnv,
       Precision precision, PersistPtr ppAnalysis = NULL) ;

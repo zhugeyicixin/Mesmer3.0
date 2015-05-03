@@ -14,6 +14,9 @@ namespace mesmer
     // Function to calculate contribution to canonical partition function.
     virtual double canPrtnFnCntrb(gDensityOfStates* gdos, double beta) ;
 
+	// Function to calculate contribution to canonical partition function and the derivatives.
+	virtual bool canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn) ;
+
     // Function to return the number of degrees of freedom associated with this count.
     virtual unsigned int NoDegOfFreedom(gDensityOfStates* gdos) ;
 
@@ -121,6 +124,54 @@ namespace mesmer
 	return qtot ;
   }
   
+  // Function to calculate contribution to canonical partition function and the derivatives.
+  // prtnFn[0] is the partition function z1*z2*...*zj*...*zn
+  // prtnFn[1] denotes for sum(z'[j]/z[j])
+  // prtnFn[2] denotes for sum((z'[j]/z[j])')=sum(z''[j]/z[j]-(z'[j]/z[j])^2)
+  // z'[j] is dz/d(1/T)
+  bool ClassicalRotor::canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn)
+  {
+	  prtnFn[0] = 1.0;
+	  prtnFn[1] = 0.0;
+	  prtnFn[2] = 0.0;
+
+	  vector<double> rotConst;
+	  RotationalTop rotorType = gdos->get_rotConsts(rotConst);
+	  double sym = gdos->get_Sym();
+
+	  double temp = 1.0/boltzmann_RCpK/beta;
+
+	  prtnFn[0] *= double(gdos->getSpinMultiplicity());
+
+	  switch(rotorType){
+	  case NONLINEAR://3-D symmetric/asymmetric/spherical top
+		  prtnFn[0] *= (sqrt(M_PI/(rotConst[0] * rotConst[1] * rotConst[2]))*(pow(beta,-1.5))/sym) ;
+		  prtnFn[1] += -1.5*temp;
+		  prtnFn[2] += 1.5*temp*temp;
+		  break;
+	  case LINEAR://2-D linear
+		  prtnFn[0] /= (rotConst[0]*sym*beta) ;
+		  prtnFn[1] += -temp;
+		  prtnFn[2] += temp*temp;
+		  break;
+	  default:
+		  break; // Assume atom.
+	  }
+
+	  // Electronic excited states.
+	  // this code could be accelerated because of the recalculated items if needed
+	  // the current state is clearer for the physical meaning
+	  vector<double> eleExc;
+	  gdos->getEleExcitation(eleExc);
+	  for (size_t j(0) ; j < eleExc.size() ; ++j){
+		  prtnFn[0] += prtnFn[0]*exp(-beta*eleExc[j]) ;
+		  prtnFn[1] += -(eleExc[j]/boltzmann_RCpK) * exp(-beta*eleExc[j]) / (1+exp(-beta*eleExc[j]));
+		  prtnFn[2] += pow(eleExc[j]/boltzmann_RCpK, 2) * exp(-beta*eleExc[j]) / (1+exp(-beta*eleExc[j]));
+	  }
+
+	  return true;
+  }
+
   // Function to return the number of degrees of freedom associated with this count.
   unsigned int ClassicalRotor::NoDegOfFreedom(gDensityOfStates* gdos) {
 

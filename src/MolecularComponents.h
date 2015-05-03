@@ -154,6 +154,9 @@ namespace mesmer
     // Calculate Density of states
     bool calcDensityOfStates();
 
+	// test of calculation on Density of states with a certain grainSize and energyAboveTheTopHill
+	bool testCalcDensityOfStates(int grainSize, double EAboveTop);
+
     // Calculate classical energy
     double getClassicalEnergy();
 

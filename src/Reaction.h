@@ -178,6 +178,9 @@ namespace mesmer
     // Wrapper function to calculate and grain average microcanoincal rate coeffcients.
     bool calcGrnAvrgMicroRateCoeffs() ;
 
+	// Wrapper function to calculate and test grain average microcanoincal rate coeffcients.
+	bool calcTestGrnAvrgPrtnFn() ;
+
     // Add reaction terms to the reaction matrix.
     virtual void AddReactionTerms(qdMatrix *CollOptr, molMapType &isomermap, const double rMeanOmega) = 0;
 
@@ -219,6 +222,9 @@ namespace mesmer
 
     // Grain averaged microcanonical rate coefficients.
     virtual void calcGrainRateCoeffs() = 0;
+
+	// Test grain averaged microcanonical rate coefficients.
+	virtual void calcTestGrainRateCoeffs() { ctest << "Reaction::calcTestGrainRateCoeffs\tReactionType:\t" << getReactionType() << endl; };
 
     // Test k(T)
     virtual void testRateConstant() = 0;
@@ -275,6 +281,9 @@ namespace mesmer
 
     // Grain average microcanonical rate coefficients.
     bool grnAvrgMicroRateCoeffs();
+
+	// Test grain average microcanonical rate coefficients.
+	bool testGrnAvrgMicroRateCoeffs();
 
     // Read excess reactant concentration
     bool ReadExcessReactantConcentration(PersistPtr ppReac);

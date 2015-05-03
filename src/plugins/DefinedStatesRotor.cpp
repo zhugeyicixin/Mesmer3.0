@@ -33,6 +33,9 @@ namespace mesmer
     // Function to calculate contribution to canonical partition function.
     virtual double canPrtnFnCntrb(gDensityOfStates* gdos, double beta) ;
 
+	// Function to calculate contribution to canonical partition function and the derivatives.
+	virtual bool canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn) ;
+
     // Function to return the number of degrees of freedom associated with this count.
     virtual unsigned int NoDegOfFreedom(gDensityOfStates* gdos) ;
 
@@ -133,6 +136,31 @@ namespace mesmer
     }
 
     return Qrot ;
+  }
+
+  // Function to calculate contribution to canonical partition function and the derivatives.
+  // prtnFn[0] is the partition function z1*z2*...*zj*...*zn
+  // prtnFn[1] denotes for sum(z'[j]/z[j])
+  // prtnFn[2] denotes for sum((z'[j]/z[j])')=sum(z''[j]/z[j]-(z'[j]/z[j])^2)
+  // z'[j] is dz/d(1/T)
+  bool DefinedStatesRotor::canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn)
+  {
+	  double Q = 0.0;
+	  double Q1 = 0.0;
+	  double Q2 = 0.0;
+
+	  double zeroPointEnergy(m_energyLevels[0]) ; 
+	  for (size_t i(0) ; i < m_energyLevels.size() ; i++ ) {
+		  Q += double(m_degeneracies[i])*exp(-beta*(m_energyLevels[i] - zeroPointEnergy)) ;
+		  Q1 += -(m_energyLevels[i]-zeroPointEnergy)/boltzmann_RCpK * double(m_degeneracies[i])*exp(-beta*(m_energyLevels[i] - zeroPointEnergy));
+		  Q2 += pow((m_energyLevels[i]-zeroPointEnergy)/boltzmann_RCpK, 2) * double(m_degeneracies[i])*exp(-beta*(m_energyLevels[i] - zeroPointEnergy));
+	  }
+
+	  prtnFn[0] = Q;
+	  prtnFn[1] = Q1/Q;
+	  prtnFn[2] = Q2/Q - pow(Q1/Q, 2);
+
+	  return true;
   }
 
   // Function to return the number of degrees of freedom associated with this count.

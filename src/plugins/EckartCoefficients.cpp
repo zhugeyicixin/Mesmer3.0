@@ -64,6 +64,7 @@ namespace mesmer
 	if (rctClassicalEnergy > TC || pdtClassicalEnergy > TC) {
       throw std::runtime_error("Eckart tunnelling barrier is negative. Check classical energy correction.");
 	}
+
     //V0 & V1 are the classical barrier heights in the forward/reverse directions
     const double V0 = TC - rctClassicalEnergy;
     const double V1 = TC - pdtClassicalEnergy;

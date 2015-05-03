@@ -29,6 +29,9 @@ namespace mesmer
     // Function to calculate contribution to canonical partition function.
     virtual double canPrtnFnCntrb(gDensityOfStates* gdos, double beta) ;
 
+	// Function to calculate contribution to canonical partition function and the derivatives.
+	virtual bool canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn) ;
+
     // Function to return the number of degrees of freedom associated with this count.
     virtual unsigned int NoDegOfFreedom(gDensityOfStates* gdos) ;
 
@@ -167,6 +170,54 @@ namespace mesmer
     }
 
     return qtot ;
+  }
+
+  // Function to calculate contribution to canonical partition function and the derivatives.
+  // prtnFn[0] is the partition function z1*z2*...*zj*...*zn
+  // prtnFn[1] denotes for sum(z'[j]/z[j])
+  // prtnFn[2] denotes for sum((z'[j]/z[j])')=sum(z''[j]/z[j]-(z'[j]/z[j])^2)
+  // z'[j] is dz/d(1/T)
+  bool Morse::canTestPrtnFnCntrb(gDensityOfStates* gdos, double beta, double* prtnFn)
+  {
+	  prtnFn[0] = 1.0;
+	  prtnFn[1] = 0.0;
+	  prtnFn[2] = 0.0;
+
+	  for (size_t nFrq(0) ; nFrq < m_vibFreq.size() ; nFrq++ )
+	  {
+		  double vibFreq  = m_vibFreq[nFrq];
+		  double anharmty = m_anharmty[nFrq];
+
+		  // Maximum bound energy.
+
+		  int nmax(0) ;
+		  if (anharmty < 0.0) {
+			  nmax = int(-0.5*(vibFreq + anharmty)/anharmty)  ;
+		  } else {
+			  nmax = int(15.0*log(10.0)/(beta*vibFreq)) ;
+		  }
+
+		  // Calculate canonical partition function.
+
+		  double Q = 0.0;
+		  double Q1 = 0.0;
+		  double Q2 = 0.0;
+		  for (int n(0) ; n <= nmax ; n++ ) {
+			  double nu = double(n) ;
+			  double energy = nu*vibFreq + nu*(nu + 1)*anharmty ;
+			  // this code could be accelerated because of the recalculated items if needed
+			  // the current state is clearer for the physical meaning
+			  Q += exp(-beta*energy);
+			  Q1 += -energy/boltzmann_RCpK * exp(-beta*energy);
+			  Q2 += pow(energy/boltzmann_RCpK, 2) * exp(-beta*energy);
+		  }
+
+		  prtnFn[0] *= Q;
+		  prtnFn[1] += Q1/Q;
+		  prtnFn[2] += Q2/Q - pow(Q1/Q, 2);
+	  }
+
+	  return true;
   }
 
   // Function to return the number of degrees of freedom associated with this count.
