@@ -1,6 +1,8 @@
-﻿生成启动时间为 2015/4/30 22:41:35。
-     1>项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qd.vcxproj”在节点 3 上(build 个目标)。
-     1>InitializeBuildStatus:
+﻿生成启动时间为 2015/5/11 12:42:24。
+     1>项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qd.vcxproj”在节点 3 上(rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Debug\qd.lastbuildstate”。
+       InitializeBuildStatus:
          正在创建“Debug\qd.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        PreBuildEvent:
          Description: Copy configuration files, if not up to date
@@ -8,17 +10,21 @@
          :VCEnd
          复制了 0 个文件
        ClCompile:
-         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../qd/include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\qd\src\bits.cpp ..\..\qd\src\c_dd.cpp ..\..\qd\src\c_qd.cpp ..\..\qd\src\dd_const.cpp ..\..\qd\src\dd_real.cpp ..\..\qd\src\fpu.cpp ..\..\qd\src\qd_const.cpp ..\..\qd\src\qd_real.cpp /D_CRT_SECURE_NO_DEPRECATE 
-         bits.cpp
-         正在生成代码...
-         正在跳过...(未检测到相关更改)
+         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../qd/include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\qd\src\bits.cpp ..\..\qd\src\c_dd.cpp ..\..\qd\src\c_qd.cpp ..\..\qd\src\dd_const.cpp ..\..\qd\src\dd_real.cpp ..\..\qd\src\fpu.cpp ..\..\qd\src\qd_const.cpp ..\..\qd\src\qd_real.cpp ..\..\qd\src\util.cpp /D_CRT_SECURE_NO_DEPRECATE 
+         util.cpp
          qd_real.cpp
+     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\qd_real.cpp(196): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
+     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\qd_real.cpp(196): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
          qd_const.cpp
          fpu.cpp
          dd_real.cpp
+     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\dd_real.cpp(860): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
+     1>d:\hetanjin\smallsoftware\github\storagefiles\mesmer3.0\qd\src\dd_real.cpp(860): warning C4244: “参数”: 从“std::streamsize”转换到“int”，可能丢失数据
          dd_const.cpp
          c_qd.cpp
          c_dd.cpp
+         bits.cpp
+         正在生成代码...
        Lib:
          D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qdD.lib" /NOLOGO Debug\bits.obj
          Debug\c_dd.obj
@@ -33,8 +39,8 @@
        FinalizeBuildStatus:
          正在删除文件“Debug\qd.unsuccessfulbuild”。
          正在对“Debug\qd.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qd.vcxproj”(build 个目标)的操作。
+     1>已完成生成项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qd.vcxproj”(rebuild 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:02.65
+已用时间 00:00:04.40

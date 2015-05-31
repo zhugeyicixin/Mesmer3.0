@@ -88,7 +88,7 @@ namespace mesmer
 	  S = idealGasC/Calorie_in_Joule*(2.5+1.5*log(2*M_PI*MW/1000)-4*log(AvogadroC)-3*log(PlancksConstant_in_JouleSecond)-log(atm_in_pascal)+2.5*log(idealGasC*temp)+log(prtnFn[0])-prtnFn[1]/temp);
 	  Cp = idealGasC/Calorie_in_Joule*(prtnFn[2]/temp/temp+2.5);
 	  HmH0 = idealGasC/Calorie_in_Joule*(-prtnFn[1]+temp*2.5);
-	  ctest << "temperature\tQ, S, Cp and HmH0:\t" << temp << "\t" << prtnFn[0] << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
+	  ctest << "temperature\tQ, S, Cp and H(T)-H(0):\t" << temp << "\t" << prtnFn[0] << "\t" << S << "\t" << Cp << "\t" << HmH0 << endl;
   }
 
 
