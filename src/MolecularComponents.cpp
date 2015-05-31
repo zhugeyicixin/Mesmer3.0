@@ -712,7 +712,7 @@ namespace mesmer
 
 		moleculeWeight = gs.getMass();
 
-		ctest << endl << "thermodynamics:\t" << m_host->getName() << "\tgrainSize:\t" << m_host->getEnv().GrainSize << "\tEnergyAboveTheTopHill:\t"<< m_host->getEnv().EAboveHill << endl;
+		ctest << "thermodynamics:\t" << m_host->getName() << "\tgrainSize:\t" << m_host->getEnv().GrainSize << "\tEnergyAboveTheTopHill:\t"<< m_host->getEnv().EAboveHill << endl;
 		ctest << "Cp and S for cal/mol/K, H for cal/mol" << endl;
 
 		for (int i = 0; i< thermo_l; i++)
