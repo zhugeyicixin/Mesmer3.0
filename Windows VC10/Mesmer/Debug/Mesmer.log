@@ -1,82 +1,15 @@
-﻿生成启动时间为 2015/5/4 2:02:34。
+﻿生成启动时间为 2015/5/11 15:17:58。
      1>项目“D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Mesmer\Mesmer.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\Mesmer.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../../src/plugins /I../../src /I../../tinyxml /I../../qd/include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D TIXML_USE_STL /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\Rdouble.cpp /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE 
-         Rdouble.cpp
+         所有输出均为最新。
        ManifestResourceCompile:
          所有输出均为最新。
        Link:
-         D:\hetanjin\professionalSoftware\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\Mesmer\Mesmer.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Mesmer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Mesmer\Mesmer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"..\Mesmer\Mesmer.lib" /MACHINE:X86 Debug\Mesmer.exe.embed.manifest.res
-         Debug\AssignMolTypes.obj
-         Debug\AssociationReaction.obj
-         Debug\BimolecularSinkReaction.obj
-         Debug\error.obj
-         Debug\AnalyticalRepresentation.obj
-         Debug\BeyerSwinehart.obj
-         Debug\BoltzmannDistribution.obj
-         Debug\ClassicalRotor.obj
-         Debug\CollisionOperator.obj
-         Debug\DefinedStatesRotor.obj
-         Debug\DefinedSumOfStates.obj
-         Debug\DefinedTunnelingCoefficients.obj
-         Debug\EckartCoefficients.obj
-         Debug\ExponentialDown.obj
-         Debug\fitting.obj
-         Debug\FittingUtils.obj
-         Debug\formatfloat.obj
-         Debug\GaussianModel.obj
-         Debug\gridsearch.obj
-         Debug\HinderedRotorCM1D.obj
-         Debug\HinderedRotorQM1D.obj
-         Debug\IrreversibleExchangeReaction.obj
-         Debug\IrreversibleUnimolecularReaction.obj
-         Debug\IsomerizationReaction.obj
-         Debug\LandauZenerCrossingCoeff.obj
-         Debug\main.obj
-         Debug\Marquardt.obj
-         Debug\MesmerEnv.obj
-         Debug\MesmerFlags.obj
-         Debug\MesmerILT.obj
-         Debug\MesmerMath.obj
-         Debug\MesmerTools.obj
-         Debug\MicroRate.obj
-         Debug\MolecularComponents.obj
-         Debug\Molecule.obj
-         Debug\MoleculeManager.obj
-         Debug\Morse.obj
-         Debug\PriorDistribution.obj
-         Debug\QMRotor.obj
-         Debug\SensitivityAnalysis.obj
-         Debug\SimpleBimolecularSink.obj
-         Debug\UnitTests.obj
-         Debug\PseudoIsomerizationReaction.obj
-         Debug\Rdouble.obj
-         Debug\Reaction.obj
-         Debug\ReactionManager.obj
-         Debug\simplecalc.obj
-         Debug\SimpleILT.obj
-         Debug\SimpleRRKM.obj
-         Debug\sobol.obj
-         Debug\Spline.obj
-         Debug\System.obj
-         Debug\ThermodynamicTable.obj
-         Debug\TimeCounter.obj
-         Debug\TMatrix.obj
-         Debug\unitsConversion.obj
-         Debug\vector3.obj
-         Debug\WKBCrossingCoeff.obj
-         Debug\WKBTunnellingCoefficients.obj
-         Debug\XMLPersist.obj
-         "D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\qd\qdD.lib"
-         "D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Debug\TinyXMLD.lib"
+         所有输出均为最新。
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\Mesmer.exe.embed.manifest" /manifest Debug\Mesmer.exe.intermediate.manifest
          所有输出均为最新。
-       LinkEmbedManifest:
-         所有输出均为最新。
-         Mesmer.vcxproj -> D:\hetanjin\smallSoftware\github\storageFiles\Mesmer3.0\Windows VC10\Mesmer\..\Mesmer\Mesmer.exe
        FinalizeBuildStatus:
          正在删除文件“Debug\Mesmer.unsuccessfulbuild”。
          正在对“Debug\Mesmer.lastbuildstate”执行 Touch 任务。
@@ -84,4 +17,4 @@
 
 生成成功。
 
-已用时间 00:00:01.20
+已用时间 00:00:00.69
